@@ -1,8 +1,12 @@
+.section {
+  height: 100%;
+}
+
 .login-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
   margin-top: 20vh;
-  max-width: 20em;
+  max-width: 22em;
 }

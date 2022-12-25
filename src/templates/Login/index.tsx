@@ -1,4 +1,4 @@
-import { Layout, theme } from 'antd'
+import { Card, Layout } from 'antd'
 
 import style from './style.module.css'
 
@@ -9,17 +9,10 @@ type TemplateLoginProps = {
 }
 
 const TemplateLogin = ({ Outlet }: TemplateLoginProps) => {
-  const {
-    token: {
-      colorBgContainer
-    }
-  } = theme.useToken()
-
   return (
-    <Layout style={{ backgroundColor: colorBgContainer }}>
+    <Layout className={style.section}>
       <Content>
-        <div className={style['login-wrap']} style={{ backgroundColor: colorBgContainer }}>
-          <h1>Login</h1>
+        <div className={style['login-wrap']}>
           {Outlet}
         </div>
       </Content>
