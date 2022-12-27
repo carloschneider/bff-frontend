@@ -1,0 +1,28 @@
+.wrap {
+  display: grid;
+  grid-template-areas:
+  'header header header'
+  'sidebar content content'
+  'sidebar footer footer';
+  grid-template-columns: fit-content(16em) 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  min-width: 16em;
+}
+
+.content {
+  grid-area: content;
+  width: 100%;
+}
+
+.footer {
+  grid-area: footer;
+}

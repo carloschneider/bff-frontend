@@ -1,4 +1,4 @@
-import { Card, Layout } from 'antd'
+import { Layout } from 'antd'
 
 import style from './style.module.css'
 
