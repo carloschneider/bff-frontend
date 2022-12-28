@@ -1,5 +1,6 @@
 import { Layout, theme } from 'antd'
 
+import Breadcrumb from 'components/Breadcrumb'
 import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
 
@@ -22,6 +23,8 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
       </div>
 
       <div className={style.content} style={{ padding: paddingContentHorizontal }}>
+        <Breadcrumb />
+
         <div style={{ padding: paddingContentHorizontal, background: colorBgContainer }}>
           {Outlet}
         </div>
