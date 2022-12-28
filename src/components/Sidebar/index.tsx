@@ -1,53 +1,68 @@
-import { DollarCircleOutlined, LogoutOutlined, DashboardOutlined, UsergroupAddOutlined } from '@ant-design/icons'
-import { Layout, Menu, MenuProps } from 'antd'
+import { DollarCircleOutlined, LogoutOutlined, DashboardOutlined, UsergroupAddOutlined, HomeOutlined } from '@ant-design/icons'
+import { Layout, Menu } from 'antd'
+import { type ItemType } from 'antd/es/menu/hooks/useItems'
+import Cookies from 'js-cookie'
 import { FaPaw } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = ItemType & { role: string[] };
 
 const { Sider } = Layout
 
-const items: MenuItem[] = [
-  {
-    label: <Link to="/">Dashboard</Link>,
-    key: '/',
-    icon: <DashboardOutlined style={{ fontSize: '18px' }} />
-  },
-  {
-    label: <Link to="/invoices">Invoices</Link>,
-    key: '/invoices',
-    icon: <DollarCircleOutlined style={{ fontSize: '18px' }} />
-  },
-  {
-    label: <Link to="/pets">Pets</Link>,
-    key: '/pets',
-    icon: <FaPaw style={{ fontSize: '18px' }} />
-  },
-  {
-    label: <Link to="/tutors">Tutors</Link>,
-    key: '/tutors',
-    icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />
-  },
-  {
-    label: <Link to="/staff">Staff</Link>,
-    key: '/staff',
-    icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />
-  },
-  {
-    label: <Link to="/logout">Logout</Link>,
-    key: '/logout',
-    icon: <LogoutOutlined style={{ fontSize: '18px' }} />
-  }
-]
-
 const Sidebar = () => {
   const location = useLocation()
+  const role = Cookies.get('role') as string
+
+  const items: MenuItem[] = [
+    {
+      label: <Link to="/">Home</Link>,
+      key: '/',
+      icon: <HomeOutlined style={{ fontSize: '18px' }} />,
+      role: ['STAFF', 'TUTOR']
+    },
+    {
+      label: <Link to="/dashboard">Dashboard</Link>,
+      key: '/dashboard',
+      icon: <DashboardOutlined style={{ fontSize: '18px' }} />,
+      role: ['USER']
+    },
+    {
+      label: <Link to="/invoices">Invoices</Link>,
+      key: '/invoices',
+      icon: <DollarCircleOutlined style={{ fontSize: '18px' }} />,
+      role: ['USER']
+    },
+    {
+      label: <Link to="/pets">Pets</Link>,
+      key: '/pets',
+      icon: <FaPaw style={{ fontSize: '18px' }} />,
+      role: ['USER', 'STAFF', 'TUTOR']
+    },
+    {
+      label: <Link to="/tutors">Tutors</Link>,
+      key: '/tutors',
+      icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
+      role: ['USER']
+    },
+    {
+      label: <Link to="/staff">Staff</Link>,
+      key: '/staff',
+      icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
+      role: ['USER']
+    },
+    {
+      label: <Link to="/logout">Logout</Link>,
+      key: '/logout',
+      icon: <LogoutOutlined style={{ fontSize: '18px' }} />,
+      role: ['USER', 'STAFF', 'TUTOR']
+    }
+  ]
 
   return (
     <Layout style={{ height: '100%' }}>
       <Sider width="100%" theme="light">
         <Menu
-          items={items}
+          items={items.filter(item => item.role.includes(role))}
           mode="inline"
           theme="light"
           selectedKeys={[location.pathname]}
