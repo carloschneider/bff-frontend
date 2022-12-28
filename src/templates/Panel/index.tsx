@@ -1,4 +1,7 @@
 import { Layout, theme } from 'antd'
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Breadcrumb from 'components/Breadcrumb'
 import Header from 'components/Header'
@@ -12,6 +15,16 @@ type TemplatePanelProps = {
 
 const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
   const { token: { colorBgContainer, paddingContentHorizontal } } = theme.useToken()
+  const role = Cookies.get('role')
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!role) {
+      navigate('/')
+    }
+  }, [])
+
   return (
     <Layout className={style.wrap}>
       <div className={style.header}>
