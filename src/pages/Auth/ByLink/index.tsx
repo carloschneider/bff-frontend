@@ -2,13 +2,14 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { gql, useMutation } from '@apollo/client'
 import { Card, Space, Spin, Typography } from 'antd'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 const { Paragraph } = Typography
 
 const PageAuthByLink = () => {
   const { key } = useParams()
+  const navigate = useNavigate()
 
   const MUTATION_AUTH_BY_KEY = gql`
     mutation AuthByKey($input: AuthKeyInput!) {
@@ -30,7 +31,9 @@ const PageAuthByLink = () => {
       })
 
       if (response.data?.authByKey === true) {
-        console.log('# Redirect!')
+        setTimeout(() => {
+          navigate('/admin')
+        }, 800)
       }
     }
 
