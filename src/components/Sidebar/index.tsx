@@ -21,37 +21,37 @@ const Sidebar = () => {
       role: ['STAFF', 'TUTOR']
     },
     {
-      label: <Link to="/dashboard">Dashboard</Link>,
+      label: <Link to="/admin/dashboard">Dashboard</Link>,
       key: '/dashboard',
       icon: <DashboardOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
-      label: <Link to="/invoices">Invoices</Link>,
+      label: <Link to="/admin/invoices">Invoices</Link>,
       key: '/invoices',
       icon: <DollarCircleOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
-      label: <Link to="/pets">Pets</Link>,
+      label: <Link to="/admin/pets">Pets</Link>,
       key: '/pets',
       icon: <FaPaw style={{ fontSize: '18px' }} />,
       role: ['USER', 'STAFF', 'TUTOR']
     },
     {
-      label: <Link to="/tutors">Tutors</Link>,
+      label: <Link to="/admin/tutors">Tutors</Link>,
       key: '/tutors',
       icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
-      label: <Link to="/staff">Staff</Link>,
+      label: <Link to="/admin/staff">Staff</Link>,
       key: '/staff',
       icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
-      label: <Link to="/logout">Logout</Link>,
+      label: <Link to="/admin/logout">Logout</Link>,
       key: '/logout',
       icon: <LogoutOutlined style={{ fontSize: '18px' }} />,
       role: ['USER', 'STAFF', 'TUTOR']
