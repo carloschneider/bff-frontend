@@ -15,44 +15,44 @@ const Sidebar = () => {
 
   const items: MenuItem[] = [
     {
-      label: <Link to="/">Home</Link>,
-      key: '/',
+      label: <Link to="/admin">Home</Link>,
+      key: '/admin',
       icon: <HomeOutlined style={{ fontSize: '18px' }} />,
       role: ['STAFF', 'TUTOR']
     },
     {
       label: <Link to="/admin/dashboard">Dashboard</Link>,
-      key: '/dashboard',
+      key: '/admin/dashboard',
       icon: <DashboardOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
       label: <Link to="/admin/invoices">Invoices</Link>,
-      key: '/invoices',
+      key: '/admin/invoices',
       icon: <DollarCircleOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
       label: <Link to="/admin/pets">Pets</Link>,
-      key: '/pets',
+      key: '/admin/pets',
       icon: <FaPaw style={{ fontSize: '18px' }} />,
       role: ['USER', 'STAFF', 'TUTOR']
     },
     {
       label: <Link to="/admin/tutors">Tutors</Link>,
-      key: '/tutors',
+      key: '/admin/tutors',
       icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
       label: <Link to="/admin/staff">Staff</Link>,
-      key: '/staff',
+      key: '/admin/staff',
       icon: <UsergroupAddOutlined style={{ fontSize: '18px' }} />,
       role: ['USER']
     },
     {
       label: <Link to="/admin/logout">Logout</Link>,
-      key: '/logout',
+      key: '/admin/logout',
       icon: <LogoutOutlined style={{ fontSize: '18px' }} />,
       role: ['USER', 'STAFF', 'TUTOR']
     }

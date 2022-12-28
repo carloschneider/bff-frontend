@@ -1,14 +1,14 @@
-import PageIndex from 'pages/Index'
-import PagePets from 'pages/Pets'
 import { Routes, Route, Outlet } from 'react-router-dom'
-import TemplateHome from 'templates/Home'
 
 import PageAuthByLink from 'pages/Auth/ByLink'
 import PageLoginStaff from 'pages/Auth/Staff'
 import PageDashboard from 'pages/Dashboard'
 import PageHome from 'pages/Home'
+import PageIndex from 'pages/Index'
 import PageInvoices from 'pages/Invoices'
 import PageLogout from 'pages/Logout'
+import PagePets from 'pages/Pets'
+import TemplateHome from 'templates/Home'
 import TemplateLogin from 'templates/Login'
 import TemplatePanel from 'templates/Panel'
 
