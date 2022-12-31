@@ -1,5 +1,7 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, createHttpLink, from, InMemoryCache } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 import { ConfigProvider } from 'antd'
+import Cookies from 'js-cookie'
 import { BrowserRouter } from 'react-router-dom'
 
 import 'antd/dist/reset.css'
@@ -8,8 +10,23 @@ import './style.module.css'
 import Router from 'router'
 
 const App = () => {
-  const client = new ApolloClient({
+  const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql',
+  })
+
+  const authLink = setContext((_, { headers }) => {
+    const token = Cookies.get('token')
+
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      }
+    }
+  })
+
+  const client = new ApolloClient({
+    link: from([authLink, httpLink]),
     cache: new InMemoryCache(),
     credentials: 'include'
   })
