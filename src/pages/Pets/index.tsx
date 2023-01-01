@@ -1,8 +1,10 @@
+import { SearchOutlined } from '@ant-design/icons'
 import { gql, useLazyQuery } from '@apollo/client'
-import { Pagination, Space, Table, Typography } from 'antd'
+import { Input, Pagination, Space, Table, Typography } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import type { SorterResult } from 'antd/es/table/interface'
-import { useEffect, useState } from 'react'
+import { debounce } from 'lodash'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { convertOrder, OrderEnum } from 'helpers/pagination/order'
@@ -109,6 +111,26 @@ const PagePets = () => {
     }
   ] = useLazyQuery<PetsDataType, PetsVariablesType>(QUERY_GET_ALL_PETS)
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: {
+        value
+      }
+    } = event
+
+    if (!value) {
+      setWhere(null)
+
+      return true
+    }
+
+    setWhere({
+      name: value
+    })
+  }
+
+  const handleDebounceSearch = useMemo(() => debounce(handleSearchChange, 300), [])
+
   const handleChangeTable = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _: any,
@@ -147,8 +169,15 @@ const PagePets = () => {
   return (
     <>
       <Typography.Title level={2}>Pets</Typography.Title>
-
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
+        <Input
+          type="search"
+          size="large"
+          placeholder="Search by pet name"
+          prefix={<SearchOutlined />}
+          onChange={handleDebounceSearch}
+        />
+
         <Table
           columns={columns}
           dataSource={data?.getAllPets}
@@ -158,15 +187,14 @@ const PagePets = () => {
           onChange={handleChangeTable}
         />
 
-        <div style={{ display: 'flex', justifyContent: 'end' }}>
-          <Pagination
-            current={page}
-            pageSize={limit}
-            total={data?.getAllPets[0].count}
-            showSizeChanger={false}
-            onChange={handleChangePagination}
-          />
-        </div>
+        <Pagination
+          current={page}
+          pageSize={limit}
+          total={data?.getAllPets && data?.getAllPets.length > 0 ? data?.getAllPets[0].count : 1}
+          showSizeChanger={false}
+          onChange={handleChangePagination}
+          style={{ display: 'flex', justifyContent: 'end' }}
+        />
       </Space>
     </>
   )
