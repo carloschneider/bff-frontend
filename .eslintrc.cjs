@@ -1,70 +1,55 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true
+  env: {
+    browser: true,
+    es2021: true,
   },
-  'extends': [
+  extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:import/errors'
+    'plugin:prettier/recommended',
+    'plugin:import/errors',
   ],
-  'overrides': [
-  ],
-  'parser': '@typescript-eslint/parser',
-  'parserOptions': {
-    'ecmaVersion': 'latest',
-    'sourceType': 'module'
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  'plugins': [
-    'react',
-    '@typescript-eslint'
-  ],
-  'settings': {
+  plugins: ['react', 'prettier', '@typescript-eslint'],
+  settings: {
     'import/resolver': {
-      'typescript': {
-        'alwaysTryTypes': true
-      }
-    }
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
   },
-  'rules': {
-    'indent': [
-      'error',
-      2
-    ],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'never'
-    ],
+  rules: {
+    indent: ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
     'import/no-unresolved': 'error',
     'import/order': [
       'error',
       {
-        'groups': [
+        groups: [
           'builtin',
           'external',
           'internal',
           'parent',
           'sibling',
-          'index'
+          'index',
         ],
         'newlines-between': 'always',
-        'alphabetize': {
-          'order': 'asc',
-          'caseInsensitive': true
-        }
-      }
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
     ],
     'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off'
-  }
+    'react/react-in-jsx-scope': 'off',
+  },
 }
