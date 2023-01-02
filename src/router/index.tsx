@@ -7,6 +7,7 @@ import PageHome from 'pages/Home'
 import PageIndex from 'pages/Index'
 import PageInvoices from 'pages/Invoices'
 import PageLogout from 'pages/Logout'
+import PagePet from 'pages/Pet'
 import PagePets from 'pages/Pets'
 import TemplateHome from 'templates/Home'
 import TemplateLogin from 'templates/Login'
@@ -23,6 +24,7 @@ const Router = () => (
       <Route path="/admin/dashboard" element={<PageDashboard />} />
       <Route path="/admin/invoices" element={<PageInvoices />} />
       <Route path="/admin/pets" element={<PagePets />} />
+      <Route path="/admin/pet/:petId" element={<PagePet />} />
       <Route path="/admin/logout" element={<PageLogout />} />
     </Route>
 

@@ -13,7 +13,7 @@ const PageAuthByLink = () => {
   const navigate = useNavigate()
 
   const MUTATION_AUTH_BY_KEY = gql`
-    mutation AuthByKey($input: AuthKeyInput!) {
+    mutation AuthByKeyInput($input: AuthByKeyInput!) {
       authByKey(input: $input) {
         token
         role
