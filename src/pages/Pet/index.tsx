@@ -1,7 +1,9 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import {
+  Col,
   Descriptions,
   Pagination,
+  Row,
   Skeleton,
   Space,
   Table,
@@ -17,6 +19,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import CheckResponsible from 'components/CheckResponsible'
+import PetActions from 'components/PetActions'
 import { convertOrder, OrderEnum } from 'helpers/pagination/order'
 import { PaginationType } from 'pages/Pets'
 
@@ -145,9 +148,11 @@ const PagePet = () => {
     page: 1,
     order: defaultOrder,
     field: defaultField,
-    limit: 10,
+    limit: 4,
     offset: 0,
-    where: null
+    where: {
+      id: petId
+    }
   })
 
   const GET_PET_BY_ID = gql`
@@ -179,11 +184,24 @@ const PagePet = () => {
   })
 
   const GET_CHECKS_BY_PET_ID = gql`
-    query GetAllChecksByPetId($where: CheckWhereGetAllByPetIdInput!) {
-      getAllChecksByPetId(where: $where) {
+    query GetAllChecksByPetId(
+      $limit: Int
+      $offset: Int
+      $field: String
+      $order: String
+      $where: CheckWhereGetAllByPetIdInput!
+    ) {
+      getAllChecksByPetId(
+        limit: $limit
+        offset: $offset
+        field: $field
+        order: $order
+        where: $where
+      ) {
         id
         arrive
         leave
+        count
         responsibles {
           id
           type
@@ -201,8 +219,13 @@ const PagePet = () => {
     }
   `
 
-  const [getChecks, { data: dataChecks, loading: loadingChecks }] =
-    useLazyQuery<ChecksDataType, ChecksVariablesType>(GET_CHECKS_BY_PET_ID, {
+  const [
+    getChecks,
+    { data: dataChecks, loading: loadingChecks, refetch: refetchChecks }
+  ] = useLazyQuery<ChecksDataType, ChecksVariablesType>(GET_CHECKS_BY_PET_ID)
+
+  useEffect(() => {
+    getChecks({
       variables: {
         order: filters.order,
         field: filters.field,
@@ -211,11 +234,10 @@ const PagePet = () => {
         where: {
           id: petId
         }
-      }
+      },
+      fetchPolicy: 'network-only',
+      nextFetchPolicy: 'no-cache'
     })
-
-  useEffect(() => {
-    getChecks()
   }, [dataPet, filters])
 
   const handleChangeTable = (
@@ -270,9 +292,35 @@ const PagePet = () => {
         </Descriptions>
       </Skeleton>
 
-      <Typography.Title level={3}>Checks</Typography.Title>
+      <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+        <Row>
+          <Col
+            xs={24}
+            sm={12}
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
+            <Typography.Title level={3} style={{ marginBottom: 0 }}>
+              Checks
+            </Typography.Title>
+          </Col>
 
-      <Space direction="vertical" size="large" style={{ width: '100%' }}>
+          <Col xs={24} sm={12}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'end'
+              }}
+            >
+              <PetActions
+                id={petId}
+                name={dataPet?.getPetById.name}
+                callback={refetchChecks}
+              />
+            </div>
+          </Col>
+        </Row>
+
         <Table
           columns={columnsChecks}
           dataSource={dataChecks?.getAllChecksByPetId}

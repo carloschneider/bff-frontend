@@ -8,19 +8,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { convertOrder, OrderEnum } from 'helpers/pagination/order'
-
-export type BreedType = {
-  name: string
-}
-
-export type PetType = {
-  id: string
-  name: string
-  birthDate: Date
-  breed: BreedType
-  count?: number
-  createdAt?: Date
-}
+import { PetType } from 'pages/Pet'
 
 export type PetsDataType = {
   getAllPets: PetType[]
@@ -78,8 +66,20 @@ const PagePets = () => {
   ]
 
   const QUERY_GET_ALL_PETS = gql`
-    query GetAllPets($limit: Int, $offset: Int, $field: String, $order: String, $where: PetWhereInput) {
-      getAllPets(limit: $limit, offset: $offset, field: $field, order: $order, where: $where) {
+    query GetAllPets(
+      $limit: Int
+      $offset: Int
+      $field: String
+      $order: String
+      $where: PetWhereInput
+    ) {
+      getAllPets(
+        limit: $limit
+        offset: $offset
+        field: $field
+        order: $order
+        where: $where
+      ) {
         id
         name
         birthDate
@@ -102,20 +102,14 @@ const PagePets = () => {
   const [offset, setOffset] = useState<PaginationType['offset']>(0)
   const [where, setWhere] = useState<PetsVariablesType['where']>(null)
 
-  const [
-    getPets,
-    {
-      loading,
-      data,
-      error
-    }
-  ] = useLazyQuery<PetsDataType, PetsVariablesType>(QUERY_GET_ALL_PETS)
+  const [getPets, { loading, data, error }] = useLazyQuery<
+    PetsDataType,
+    PetsVariablesType
+  >(QUERY_GET_ALL_PETS)
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
-      target: {
-        value
-      }
+      target: { value }
     } = event
 
     if (!value) {
@@ -129,7 +123,10 @@ const PagePets = () => {
     })
   }
 
-  const handleDebounceSearch = useMemo(() => debounce(handleSearchChange, 300), [])
+  const handleDebounceSearch = useMemo(
+    () => debounce(handleSearchChange, 300),
+    []
+  )
 
   const handleChangeTable = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -169,6 +166,7 @@ const PagePets = () => {
   return (
     <>
       <Typography.Title level={2}>Pets</Typography.Title>
+
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <Input
           type="search"
@@ -190,7 +188,11 @@ const PagePets = () => {
         <Pagination
           current={page}
           pageSize={limit}
-          total={data?.getAllPets && data?.getAllPets.length > 0 ? data?.getAllPets[0].count : 1}
+          total={
+            data?.getAllPets && data?.getAllPets.length > 0
+              ? data?.getAllPets[0].count
+              : 1
+          }
           showSizeChanger={false}
           onChange={handleChangePagination}
           style={{ display: 'flex', justifyContent: 'end' }}
