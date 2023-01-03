@@ -1,11 +1,17 @@
-import { DollarCircleOutlined, LogoutOutlined, DashboardOutlined, UsergroupAddOutlined, HomeOutlined } from '@ant-design/icons'
+import {
+  DollarCircleOutlined,
+  LogoutOutlined,
+  DashboardOutlined,
+  UsergroupAddOutlined,
+  HomeOutlined
+} from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import { type ItemType } from 'antd/es/menu/hooks/useItems'
 import Cookies from 'js-cookie'
 import { FaPaw } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
 
-type MenuItem = ItemType & { role: string[] };
+type MenuItem = ItemType & { role: string[] }
 
 const { Sider } = Layout
 
@@ -62,7 +68,7 @@ const Sidebar = () => {
     <Layout style={{ height: '100%' }}>
       <Sider width="100%" theme="light">
         <Menu
-          items={items.filter(item => item.role.includes(role))}
+          items={items.filter((item) => item.role.includes(role))}
           mode="inline"
           theme="light"
           selectedKeys={[location.pathname]}

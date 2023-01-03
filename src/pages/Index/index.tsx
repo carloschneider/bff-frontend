@@ -14,9 +14,7 @@ const PageIndex = () => {
     }
   })
 
-  return (
-    <h1>BFF.PET</h1>
-  )
+  return <h1>BFF.PET</h1>
 }
 
 export default PageIndex

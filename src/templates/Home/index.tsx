@@ -7,11 +7,7 @@ type TemplateHomeProps = {
 }
 
 const TemplateHome = ({ Outlet }: TemplateHomeProps) => {
-  return (
-    <Layout className={style.home}>
-      {Outlet}
-    </Layout>
-  )
+  return <Layout className={style.home}>{Outlet}</Layout>
 }
 
 export default TemplateHome

@@ -14,7 +14,9 @@ type TemplatePanelProps = {
 }
 
 const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
-  const { token: { colorBgContainer, paddingContentHorizontal } } = theme.useToken()
+  const {
+    token: { colorBgContainer, paddingContentHorizontal }
+  } = theme.useToken()
   const role = Cookies.get('role')
 
   const navigate = useNavigate()
@@ -35,17 +37,23 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
         <Sidebar />
       </div>
 
-      <div className={style.content} style={{ padding: paddingContentHorizontal }}>
+      <div
+        className={style.content}
+        style={{ padding: paddingContentHorizontal }}
+      >
         <Breadcrumb />
 
-        <div style={{ padding: paddingContentHorizontal, background: colorBgContainer }}>
+        <div
+          style={{
+            padding: paddingContentHorizontal,
+            background: colorBgContainer
+          }}
+        >
           {Outlet}
         </div>
       </div>
 
-      <div className={style.footer}>
-        Footer
-      </div>
+      <div className={style.footer}>Footer</div>
     </Layout>
   )
 }

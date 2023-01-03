@@ -59,22 +59,16 @@ const PageLoginStaff = () => {
         </Form.Item>
 
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-          {
-            data && (
-              <Alert
-                message="We sent a login link to your e-mail."
-                type="success"
-                showIcon
-              />
-            )
-          }
+          {data && (
+            <Alert
+              message="We sent a login link to your e-mail."
+              type="success"
+              showIcon
+            />
+          )}
 
           <Form.Item className={style['login-button']}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              loading={loading}
-            >
+            <Button type="primary" htmlType="submit" loading={loading}>
               Login
             </Button>
           </Form.Item>

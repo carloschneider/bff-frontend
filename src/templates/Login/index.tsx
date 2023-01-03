@@ -12,9 +12,7 @@ const TemplateLogin = ({ Outlet }: TemplateLoginProps) => {
   return (
     <Layout className={style.section}>
       <Content>
-        <div className={style['login-wrap']}>
-          {Outlet}
-        </div>
+        <div className={style['login-wrap']}>{Outlet}</div>
       </Content>
     </Layout>
   )

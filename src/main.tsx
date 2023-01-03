@@ -6,8 +6,11 @@ import App from 'components/App'
 const strictMode = true
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  strictMode ?
+  strictMode ? (
     <React.StrictMode>
       <App />
-    </React.StrictMode> : <App />,
+    </React.StrictMode>
+  ) : (
+    <App />
+  )
 )

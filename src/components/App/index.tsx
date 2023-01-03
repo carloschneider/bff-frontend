@@ -1,4 +1,10 @@
-import { ApolloClient, ApolloProvider, createHttpLink, from, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  from,
+  InMemoryCache
+} from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { ConfigProvider } from 'antd'
 import Cookies from 'js-cookie'
@@ -11,7 +17,7 @@ import Router from 'router'
 
 const App = () => {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql',
+    uri: 'http://localhost:4000/graphql'
   })
 
   const authLink = setContext((_, { headers }) => {
@@ -20,7 +26,7 @@ const App = () => {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : '',
+        authorization: token ? `Bearer ${token}` : ''
       }
     }
   })

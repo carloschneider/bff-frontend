@@ -34,7 +34,11 @@ const PageAuthByLink = () => {
         }
       })
 
-      const { data: { authByKey: { token, role } } } = response
+      const {
+        data: {
+          authByKey: { token, role }
+        }
+      } = response
 
       const cookieOptions = {
         expires: 172800

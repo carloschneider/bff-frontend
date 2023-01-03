@@ -8,9 +8,7 @@ const Breadcrumb = () => {
         <HomeOutlined />
       </AntdBreadcrumb.Item>
 
-      <AntdBreadcrumb.Item>
-        Application List
-      </AntdBreadcrumb.Item>
+      <AntdBreadcrumb.Item>Application List</AntdBreadcrumb.Item>
 
       <AntdBreadcrumb.Item>Application</AntdBreadcrumb.Item>
     </AntdBreadcrumb>
