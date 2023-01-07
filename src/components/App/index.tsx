@@ -8,12 +8,13 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { ConfigProvider } from 'antd'
 import Cookies from 'js-cookie'
-import { BrowserRouter } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 
 import 'antd/dist/reset.css'
 import './style.module.css'
 
-import Router from 'router'
+import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
+import router from 'router'
 
 const App = () => {
   const httpLink = createHttpLink({
@@ -39,11 +40,11 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <ConfigProvider>
-          <Router />
-        </ConfigProvider>
-      </BrowserRouter>
+      <ConfigProvider>
+        <DynamicBreadcrumbProvider>
+          <RouterProvider router={router} />
+        </DynamicBreadcrumbProvider>
+      </ConfigProvider>
     </ApolloProvider>
   )
 }

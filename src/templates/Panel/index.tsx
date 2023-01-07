@@ -1,4 +1,4 @@
-import { Layout, theme } from 'antd'
+import { Layout, Space, theme } from 'antd'
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -41,16 +41,18 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
         className={style.content}
         style={{ padding: paddingContentHorizontal }}
       >
-        <Breadcrumb />
+        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+          <Breadcrumb />
 
-        <div
-          style={{
-            padding: paddingContentHorizontal,
-            background: colorBgContainer
-          }}
-        >
-          {Outlet}
-        </div>
+          <div
+            style={{
+              padding: paddingContentHorizontal,
+              background: colorBgContainer
+            }}
+          >
+            {Outlet}
+          </div>
+        </Space>
       </div>
 
       <div className={style.footer}>Footer</div>
