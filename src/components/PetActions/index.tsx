@@ -1,7 +1,14 @@
 import Icon from '@ant-design/icons'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Button, Popconfirm, Space } from 'antd'
 import { BsCalendar2Check, BsCalendar2X } from 'react-icons/bs'
+
+import {
+  CheckInDataType,
+  CheckVariablesType,
+  MUTATION_CHECKIN,
+  MUTATION_CHECKOUT
+} from './graphql'
 
 type PetActionsProps = {
   id: string
@@ -9,27 +16,7 @@ type PetActionsProps = {
   callback: () => void
 }
 
-type CheckType = {
-  id: string
-}
-
-type CheckInDataType = {
-  checkIn: CheckType[]
-}
-
-type CheckVariablesType = {
-  petId: string
-}
-
 const PetActions = ({ id, name, callback }: PetActionsProps) => {
-  const MUTATION_CHECKIN = gql`
-    mutation CheckIn($petId: String!) {
-      checkIn(petId: $petId) {
-        id
-      }
-    }
-  `
-
   const [checkin] = useMutation<CheckInDataType, CheckVariablesType>(
     MUTATION_CHECKIN
   )
@@ -47,14 +34,6 @@ const PetActions = ({ id, name, callback }: PetActionsProps) => {
       console.error(error)
     }
   }
-
-  const MUTATION_CHECKOUT = gql`
-    mutation CheckIn($petId: String!) {
-      checkOut(petId: $petId) {
-        id
-      }
-    }
-  `
 
   const [checkout] = useMutation<CheckInDataType, CheckVariablesType>(
     MUTATION_CHECKOUT

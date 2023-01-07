@@ -8,7 +8,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { convertOrder, OrderEnum } from 'helpers/pagination/order'
-import { PetType } from 'pages/Pet'
+import { PetType } from 'pages/Pet/graphql'
 
 export type PetsDataType = {
   getAllPets: PetType[]
@@ -35,7 +35,7 @@ const PagePets = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (value, { id }) => <Link to={`/admin/pet/${id}`}>{value}</Link>,
+      render: (value, { id }) => <Link to={`/admin/pets/${id}`}>{value}</Link>,
       sorter: true,
       sortDirections: ['ascend', 'descend', 'ascend']
     },
