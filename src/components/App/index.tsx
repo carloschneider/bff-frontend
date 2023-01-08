@@ -11,7 +11,7 @@ import Cookies from 'js-cookie'
 import { RouterProvider } from 'react-router-dom'
 
 import 'antd/dist/reset.css'
-import './style.module.css'
+import './style.module.scss'
 
 import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
 import router from 'router'

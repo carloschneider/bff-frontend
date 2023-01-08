@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 
-import style from './style.module.css'
+import style from './style.module.scss'
 
 const { Content } = Layout
 

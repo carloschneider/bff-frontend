@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  gap: 16px;
+}
+
+:global {
+  .ant-layout .ant-layout-header {
+    @media (max-width: $screenMDMax) {
+      padding-inline: 10px;
+    }
+  }
+}
+
+.menu {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 28px;
+
+  @media (min-width: $screenLGMin) {
+    display: none;
+  }
+}

@@ -44,7 +44,7 @@ const PagePets = () => {
       dataIndex: 'breed',
       key: 'breed',
       render: (_, { breed }) => breed.name,
-      width: 300
+      width: 200
     },
     {
       title: 'Birth date',
@@ -183,6 +183,7 @@ const PagePets = () => {
           pagination={false}
           loading={loading}
           onChange={handleChangeTable}
+          scroll={{ x: 800 }}
         />
 
         <Pagination

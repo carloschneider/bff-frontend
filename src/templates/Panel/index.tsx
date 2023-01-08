@@ -1,25 +1,27 @@
-import { Layout, Space, theme } from 'antd'
+import { Layout, theme } from 'antd'
+import { Footer } from 'antd/es/layout/layout'
 import Cookies from 'js-cookie'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Breadcrumb from 'components/Breadcrumb'
 import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
 
-import style from './style.module.css'
+import style from './style.module.scss'
 
 type TemplatePanelProps = {
   Outlet: React.ReactNode
 }
 
 const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
-  const {
-    token: { colorBgContainer, paddingContentHorizontal }
-  } = theme.useToken()
+  const { token } = theme.useToken()
+
   const role = Cookies.get('role')
 
   const navigate = useNavigate()
+
+  const [menuCollapsed, setMenuCollapsed] = useState(false)
 
   useEffect(() => {
     if (!role) {
@@ -27,36 +29,36 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
     }
   }, [])
 
+  const { Content } = Layout
+
   return (
-    <Layout className={style.wrap}>
-      <div className={style.header}>
-        <Header />
-      </div>
+    <>
+      <Layout className={style.layout}>
+        <Header setMenuCollapsed={setMenuCollapsed} />
 
-      <div className={style.sidebar}>
-        <Sidebar />
-      </div>
+        <Layout>
+          <Sidebar
+            collapsed={menuCollapsed}
+            setMenuCollapsed={setMenuCollapsed}
+          />
 
-      <div
-        className={style.content}
-        style={{ padding: paddingContentHorizontal }}
-      >
-        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-          <Breadcrumb />
+          <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb />
 
-          <div
-            style={{
-              padding: paddingContentHorizontal,
-              background: colorBgContainer
-            }}
-          >
-            {Outlet}
-          </div>
-        </Space>
-      </div>
+            <div
+              style={{
+                padding: token.paddingContentHorizontal,
+                background: token.colorBgContainer
+              }}
+            >
+              {Outlet}
+            </div>
+          </Content>
+        </Layout>
 
-      <div className={style.footer}>Footer</div>
-    </Layout>
+        <Footer>Footer</Footer>
+      </Layout>
+    </>
   )
 }
 

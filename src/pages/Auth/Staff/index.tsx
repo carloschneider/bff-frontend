@@ -3,7 +3,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Alert, Button, Card, Form, Input, Space } from 'antd'
 import { useParams } from 'react-router-dom'
 
-import style from './style.module.css'
+import style from './style.module.scss'
 
 type FinishValuesType = {
   email: string
