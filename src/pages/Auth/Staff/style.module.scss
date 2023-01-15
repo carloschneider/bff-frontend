@@ -1,3 +1,28 @@
+.card {
+  @media (min-width: $screenMDMin) {
+    display: flex;
+  }
+
+  :global {
+    .ant-card-cover {
+      img {
+        @media (min-width: $screenMDMin) {
+          border-radius: 8px 0 0 8px;
+        }
+      }
+    }
+
+    .ant-card-body {
+      @media (min-width: $screenMDMin) {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+      }
+    }
+  }
+}
+
 .login-button {
   display: flex;
   justify-content: flex-end;

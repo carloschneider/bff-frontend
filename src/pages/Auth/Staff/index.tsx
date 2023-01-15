@@ -1,15 +1,27 @@
 import { UserOutlined } from '@ant-design/icons'
 import { gql, useMutation } from '@apollo/client'
-import { Alert, Button, Card, Form, Input, Space } from 'antd'
+import {
+  Alert,
+  Button,
+  Card,
+  Form,
+  Input,
+  Space,
+  theme,
+  Typography
+} from 'antd'
 import { useParams } from 'react-router-dom'
 
 import style from './style.module.scss'
+
+const { Title } = Typography
 
 type FinishValuesType = {
   email: string
 }
 
 const PageLoginStaff = () => {
+  const { token } = theme.useToken()
   const { company } = useParams()
 
   const MUTATION_AUTH = gql`
@@ -36,7 +48,14 @@ const PageLoginStaff = () => {
   }
 
   return (
-    <Card title="Login">
+    <Card
+      className={style.card}
+      cover={<img src="https://placedog.net/300?random" />}
+    >
+      <Title level={1} style={{ fontSize: token.fontSizeHeading4 }}>
+        Login
+      </Title>
+
       <Form layout="vertical" onFinish={handleFinish}>
         <Form.Item
           name="email"
