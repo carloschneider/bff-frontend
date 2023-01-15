@@ -42,7 +42,7 @@ const App = () => {
 
         switch (message) {
           case 'jwt expired':
-            ;(window as Window).location = '/auth'
+            ;(window as Window).location = '/'
             break
 
           default:
