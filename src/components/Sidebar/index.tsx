@@ -5,13 +5,19 @@ import {
   UsergroupAddOutlined,
   HomeOutlined
 } from '@ant-design/icons'
+import type { Params } from '@remix-run/router'
 import { Drawer, Grid, Layout, Menu } from 'antd'
 import { type ItemType } from 'antd/es/menu/hooks/useItems'
 import Cookies from 'js-cookie'
 import { FaPaw } from 'react-icons/fa'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useMatches } from 'react-router-dom'
 
-type MenuItem = ItemType & { role: string[] }
+type MenuItemExtended = {
+  role: string[]
+  key: string
+}
+
+type MenuItemType = ItemType & MenuItemExtended
 
 const { Sider } = Layout
 const { useBreakpoint } = Grid
@@ -21,7 +27,7 @@ type SidebarProps = {
   setMenuCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void
 }
 
-const items: MenuItem[] = [
+const items: MenuItemType[] = [
   {
     label: <Link to="/admin">Home</Link>,
     key: '/admin',
@@ -66,9 +72,44 @@ const items: MenuItem[] = [
   }
 ]
 
+type MatchesType = {
+  id: string
+  pathname: string
+  params: Params<string>
+  data: unknown
+  handle: unknown
+}
+
+const selectedKey = (matches: MatchesType[]): string | null => {
+  const lastMatch = matches.at(-1)
+
+  if (!lastMatch) {
+    return null
+  }
+
+  const { pathname, params } = lastMatch
+
+  if (!Object.keys(params).length) {
+    return null
+  }
+
+  let path = pathname
+
+  Object.keys(params).forEach((item: string) => {
+    const param = params[item] as string
+
+    path = path.replace(`/${param}`, '')
+  })
+
+  return path
+}
+
 const Sidebar = ({ collapsed, setMenuCollapsed }: SidebarProps) => {
   const breakpoints = useBreakpoint()
   const location = useLocation()
+  const matches = useMatches()
+
+  const selected = selectedKey(matches)
 
   const role = Cookies.get('role') as string
 
@@ -77,7 +118,7 @@ const Sidebar = ({ collapsed, setMenuCollapsed }: SidebarProps) => {
       items={items.filter((item) => item.role.includes(role))}
       mode="inline"
       theme="light"
-      selectedKeys={[location.pathname]}
+      selectedKeys={[selected ? selected : location.pathname]}
       style={{ height: '100%' }}
     />
   )
