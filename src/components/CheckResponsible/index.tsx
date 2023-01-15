@@ -1,4 +1,4 @@
-import { CheckType } from 'pages/Pet'
+import { CheckType } from 'components/PetChecksTable/graphql'
 
 type CheckRenderProps = {
   date: Date
