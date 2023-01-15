@@ -1,14 +1,17 @@
 import { MenuOutlined } from '@ant-design/icons'
-import { Layout } from 'antd'
+import { Layout, theme, Typography } from 'antd'
 import React from 'react'
 
 import style from './style.module.scss'
+
+const { Title } = Typography
 
 type HeaderProps = {
   setMenuCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void
 }
 
 const Header = ({ setMenuCollapsed }: HeaderProps) => {
+  const { token } = theme.useToken()
   const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
@@ -17,11 +20,15 @@ const Header = ({ setMenuCollapsed }: HeaderProps) => {
 
   return (
     <Layout.Header className={style.header}>
-      <button className={style.menu} onClick={handleClickMenu}>
+      <button className={style['menu-button']} onClick={handleClickMenu}>
         <MenuOutlined />
       </button>
 
-      <h1 style={{ color: 'white' }}>BFF.PET</h1>
+      <Title
+        style={{ color: '#fff', fontSize: token.fontSizeHeading3, margin: 0 }}
+      >
+        BFF.PET
+      </Title>
     </Layout.Header>
   )
 }
