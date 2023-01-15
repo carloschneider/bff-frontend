@@ -16,6 +16,7 @@ import {
   CheckType,
   GET_CHECKS_BY_PET_ID
 } from './graphql'
+import style from './style.module.scss'
 
 const { Title } = Typography
 
@@ -111,7 +112,7 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
   }
 
   return (
-    <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+    <Space direction="vertical" size="middle" className={style.wrap}>
       <Row>
         <Col xs={24} sm={12} style={{ display: 'flex', alignItems: 'center' }}>
           <Title level={3} style={{ marginBottom: 0 }}>
@@ -119,16 +120,8 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
           </Title>
         </Col>
 
-        <Col xs={24} sm={12}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'end'
-            }}
-          >
-            <PetActions id={id} name={name} callback={refetchChecks} />
-          </div>
+        <Col xs={24} sm={12} className={style.buttons}>
+          <PetActions id={id} name={name} callback={refetchChecks} />
         </Col>
       </Row>
 
