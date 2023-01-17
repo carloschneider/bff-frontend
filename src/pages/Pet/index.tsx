@@ -10,7 +10,7 @@ import { DynamicBreadcrumbContext } from 'context/DyanmicBreadcrumbContext'
 
 import {
   GET_PET_BY_ID,
-  PetTypeData,
+  PetDataType,
   PetVariablesType,
   TutorType
 } from './graphql'
@@ -38,10 +38,10 @@ const columnsTutor: ColumnsType<TutorType> = [
 ]
 
 const PagePet = () => {
-  const { petId } = useParams<keyof PetVariablesType>() as PetVariablesType
+  const { petId } = useParams() as PetVariablesType
 
   const { data: dataPet, loading: loadingPet } = useQuery<
-    PetTypeData,
+    PetDataType,
     PetVariablesType
   >(GET_PET_BY_ID, {
     variables: {

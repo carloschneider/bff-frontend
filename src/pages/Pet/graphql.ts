@@ -23,7 +23,7 @@ export type PetType = {
   createdAt?: Date
 }
 
-export type PetTypeData = {
+export type PetDataType = {
   getPetById: PetType
 }
 
@@ -49,6 +49,3 @@ export const GET_PET_BY_ID = gql`
     }
   }
 `
-
-// PetTypeData,
-//   PetVariablesType
