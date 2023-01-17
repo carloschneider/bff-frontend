@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Breadcrumb from 'components/Breadcrumb'
 import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
+import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
 
 import style from './style.module.scss'
 
@@ -32,7 +33,7 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
   const { Content } = Layout
 
   return (
-    <>
+    <DynamicBreadcrumbProvider>
       <Layout className={style.layout}>
         <Header setMenuCollapsed={setMenuCollapsed} />
 
@@ -58,7 +59,7 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
 
         <Footer>Footer</Footer>
       </Layout>
-    </>
+    </DynamicBreadcrumbProvider>
   )
 }
 

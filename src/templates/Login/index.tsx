@@ -1,5 +1,7 @@
 import { Layout } from 'antd'
 
+import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
+
 import style from './style.module.scss'
 
 const { Content } = Layout
@@ -10,11 +12,13 @@ type TemplateLoginProps = {
 
 const TemplateLogin = ({ Outlet }: TemplateLoginProps) => {
   return (
-    <Layout className={style.section}>
-      <Content>
-        <div className={style['login-wrap']}>{Outlet}</div>
-      </Content>
-    </Layout>
+    <DynamicBreadcrumbProvider>
+      <Layout className={style.section}>
+        <Content>
+          <div className={style['login-wrap']}>{Outlet}</div>
+        </Content>
+      </Layout>
+    </DynamicBreadcrumbProvider>
   )
 }
 

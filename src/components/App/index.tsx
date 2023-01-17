@@ -14,7 +14,6 @@ import { RouterProvider } from 'react-router-dom'
 import 'antd/dist/reset.css'
 import './style.module.scss'
 
-import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
 import router from 'router'
 
 const App = () => {
@@ -65,9 +64,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <ConfigProvider>
-        <DynamicBreadcrumbProvider>
-          <RouterProvider router={router} />
-        </DynamicBreadcrumbProvider>
+        <RouterProvider router={router} />
       </ConfigProvider>
     </ApolloProvider>
   )
