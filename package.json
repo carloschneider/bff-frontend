@@ -2,12 +2,13 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint:fix": "eslint --fix src/**/*.{tsx,ts,js}"
+    "lint:fix": "eslint --fix src/**/*.{tsx,ts,js}",
+    "test": "jest"
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
@@ -23,6 +24,10 @@
     "use-react-router-breadcrumbs": "^4.0.1"
   },
   "devDependencies": {
+    "@apollo/react-testing": "^4.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.2.5",
     "@types/js-cookie": "^3.0.2",
     "@types/lodash": "^4.14.191",
     "@types/react": "^18.0.26",
@@ -36,10 +41,15 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
+    "jest": "^29.3.1",
+    "jest-css-modules-transform": "^4.4.2",
+    "jest-environment-jsdom": "^29.3.1",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
     "stylelint": "^14.16.0",
     "stylelint-order": "^5.0.0",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4",
     "vite": "^4.0.0",
     "vite-tsconfig-paths": "^4.0.3"
