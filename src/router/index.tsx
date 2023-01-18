@@ -39,7 +39,6 @@ export const routes = () => (
       <Route path="/admin/invoices" element={<PageInvoices />} />
       <Route path="/admin/pets">
         <Route index element={<PagePets />} />
-
         <Route
           path="/admin/pets/:petId"
           breadcrumb={DyanmicBreadcrumbTitle}
@@ -51,7 +50,6 @@ export const routes = () => (
 
     <Route path="/auth" element={<TemplateLogin Outlet={<Outlet />} />}>
       <Route path="/auth/:company/staff" element={<PageLoginStaff />} />
-
       <Route path="/auth/key/:key" element={<PageAuthByLink />} />
     </Route>
   </Route>
