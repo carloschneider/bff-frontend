@@ -44,7 +44,8 @@ const PageAuthByLink = () => {
       const { token, role } = authData.authByKey
 
       const cookieOptions: CookieSetOptions = {
-        expires: new Date(new Date().getTime() + COOKIE_EXPIRES * 1000)
+        expires: new Date(new Date().getTime() + COOKIE_EXPIRES * 1000),
+        path: '/'
       }
 
       setCookie('token', token, cookieOptions)

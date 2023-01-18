@@ -1,7 +1,7 @@
 import { Layout, theme } from 'antd'
 import { Footer } from 'antd/es/layout/layout'
-import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 
 import Breadcrumb from 'components/Breadcrumb'
@@ -17,8 +17,9 @@ type TemplatePanelProps = {
 
 const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
   const { token } = theme.useToken()
+  const [cookies] = useCookies()
 
-  const role = Cookies.get('role')
+  const { role } = cookies
 
   const navigate = useNavigate()
 

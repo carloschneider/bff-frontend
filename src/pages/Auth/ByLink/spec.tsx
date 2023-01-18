@@ -106,12 +106,21 @@ describe('<PageAuthByLink />', () => {
 
     const expires = new Date(mockedDateObject.getTime() + COOKIE_EXPIRES * 1000)
 
-    expect(mockedCookieSet).toHaveBeenCalledWith('token', mockedToken, {
-      expires
-    })
-    expect(mockedCookieSet).toHaveBeenCalledWith('role', mockedRole, {
-      expires
-    })
+    const cookieOptions = {
+      expires,
+      path: '/'
+    }
+
+    expect(mockedCookieSet).toHaveBeenCalledWith(
+      'token',
+      mockedToken,
+      cookieOptions
+    )
+    expect(mockedCookieSet).toHaveBeenCalledWith(
+      'role',
+      mockedRole,
+      cookieOptions
+    )
     expect(mockedUseNavigate).toBeCalled()
 
     MockDate.reset()

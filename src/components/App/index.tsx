@@ -8,7 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { ConfigProvider } from 'antd'
-import Cookies from 'js-cookie'
+import { useCookies } from 'react-cookie'
 import { RouterProvider } from 'react-router-dom'
 
 import 'antd/dist/reset.css'
@@ -17,12 +17,14 @@ import './style.module.scss'
 import router from 'router'
 
 const App = () => {
+  const [cookies] = useCookies()
+
   const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql'
   })
 
   const authLink = setContext((_, { headers }) => {
-    const token = Cookies.get('token')
+    const { token } = cookies
 
     return {
       headers: {

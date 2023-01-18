@@ -1,14 +1,14 @@
-import Cookies from 'js-cookie'
 import { useEffect } from 'react'
+import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 
 const PageIndex = () => {
-  const token = Cookies.get('token')
+  const [cookies] = useCookies()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log('/admin', token)
+  const { token } = cookies
 
+  useEffect(() => {
     if (token) {
       navigate('/admin')
     }
