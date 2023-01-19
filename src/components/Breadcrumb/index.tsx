@@ -1,5 +1,5 @@
 import { HomeOutlined } from '@ant-design/icons'
-import { Breadcrumb, theme } from 'antd'
+import { Breadcrumb as AntdBreadcrumb, theme } from 'antd'
 import { Link } from 'react-router-dom'
 import useBreadcrumbs, {
   createRoutesFromChildren
@@ -7,29 +7,29 @@ import useBreadcrumbs, {
 
 import { routes } from 'router'
 
-const CustomBreadcrumb = () => {
+const Breadcrumb = () => {
   const { token } = theme.useToken()
   const breadCrumbs = useBreadcrumbs(createRoutesFromChildren(routes()))
 
   return (
-    <Breadcrumb
+    <AntdBreadcrumb
       style={{ marginTop: token.marginSM, marginBottom: token.marginSM }}
     >
-      <Breadcrumb.Item>
+      <AntdBreadcrumb.Item>
         <Link to="/">
           <HomeOutlined />
         </Link>
-      </Breadcrumb.Item>
+      </AntdBreadcrumb.Item>
 
       {breadCrumbs.slice(2).map(({ match, key, breadcrumb }) => {
         return (
-          <Breadcrumb.Item key={key}>
+          <AntdBreadcrumb.Item key={key}>
             <Link to={match.pathname}>{breadcrumb}</Link>
-          </Breadcrumb.Item>
+          </AntdBreadcrumb.Item>
         )
       })}
-    </Breadcrumb>
+    </AntdBreadcrumb>
   )
 }
 
-export default CustomBreadcrumb
+export default Breadcrumb
