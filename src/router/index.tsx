@@ -1,5 +1,4 @@
 import { Spin } from 'antd'
-import { useContext } from 'react'
 import {
   Outlet,
   createBrowserRouter,
@@ -7,7 +6,7 @@ import {
 } from 'react-router-dom'
 import { Route } from 'use-react-router-breadcrumbs'
 
-import { DynamicBreadcrumbContext } from 'context/DyanmicBreadcrumbContext'
+import { useDynamicBreadcrumbContext } from 'context/DynamicBreadcrumb'
 import PageAuthByLink from 'pages/Auth/ByLink'
 import PageLoginStaff from 'pages/Auth/Staff'
 import PageDashboard from 'pages/Dashboard'
@@ -22,7 +21,7 @@ import TemplateLogin from 'templates/Login'
 import TemplatePanel from 'templates/Panel'
 
 const DyanmicBreadcrumbTitle = () => {
-  const { title } = useContext(DynamicBreadcrumbContext)
+  const { title } = useDynamicBreadcrumbContext()
 
   return <span>{title ? title : <Spin size="small" />}</span>
 }

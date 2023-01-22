@@ -2,11 +2,10 @@ import { useQuery } from '@apollo/client'
 import { Descriptions, Skeleton, Table, Typography } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { useEffect } from 'react'
-import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 import PetChecksTable from 'components/PetChecksTable'
-import { DynamicBreadcrumbContext } from 'context/DyanmicBreadcrumbContext'
+import { useDynamicBreadcrumbContext } from 'context/DynamicBreadcrumb'
 
 import {
   GET_PET_BY_ID,
@@ -49,7 +48,7 @@ const PagePet = () => {
     }
   })
 
-  const { setTitle } = useContext(DynamicBreadcrumbContext)
+  const { setTitle } = useDynamicBreadcrumbContext()
 
   useEffect(() => {
     setTitle(dataPet?.getPetById.name ?? null)

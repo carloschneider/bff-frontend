@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 
-import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
+import DynamicBreadcrumbProvider from 'context/DynamicBreadcrumb'
 
 import style from './style.module.scss'
 

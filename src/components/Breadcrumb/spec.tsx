@@ -8,7 +8,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
+import DynamicBreadcrumbProvider from 'context/DynamicBreadcrumb'
 
 import Breadcrumb from '.'
 

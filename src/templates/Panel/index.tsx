@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Breadcrumb from 'components/Breadcrumb'
 import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
-import DynamicBreadcrumbProvider from 'context/DyanmicBreadcrumbContext'
+import DynamicBreadcrumbProvider from 'context/DynamicBreadcrumb'
 
 import style from './style.module.scss'
 

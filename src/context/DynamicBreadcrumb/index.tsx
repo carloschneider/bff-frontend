@@ -1,17 +1,17 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 export type DynamicBreadcrumbContextType = {
   title: string | null
   setTitle: (value: string | null) => void
 }
 
-const initialValue: DynamicBreadcrumbContextType = {
-  title: null,
-  setTitle: (_) => _
+const initialValue: Pick<DynamicBreadcrumbContextType, 'title'> = {
+  title: null
 }
 
-export const DynamicBreadcrumbContext =
-  createContext<DynamicBreadcrumbContextType>(initialValue)
+export const DynamicBreadcrumbContext = createContext<
+  DynamicBreadcrumbContextType | undefined
+>(undefined)
 
 type DynamicBreadcrumbProviderType = {
   children: React.ReactElement | React.ReactElement[]
@@ -32,5 +32,17 @@ const DynamicBreadcrumbProvider = ({
 }
 
 DynamicBreadcrumbProvider.displayName = 'DynamicBreadcrumbProvider'
+
+export const useDynamicBreadcrumbContext = () => {
+  const breadcrumb = useContext(DynamicBreadcrumbContext)
+
+  if (typeof breadcrumb === 'undefined') {
+    throw new Error(
+      'useDynamicBreadcrumbContext must be inside of <DynamicBreadcrumbProvider>'
+    )
+  }
+
+  return breadcrumb
+}
 
 export default DynamicBreadcrumbProvider
