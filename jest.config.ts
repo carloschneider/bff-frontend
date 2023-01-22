@@ -10,7 +10,8 @@ const config: Config = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
-  }
+  },
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/*', '\\.(module.scss)$']
 }
 
 export default config
