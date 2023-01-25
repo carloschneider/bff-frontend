@@ -14,27 +14,10 @@ import { RouterProvider } from 'react-router-dom'
 import 'antd/dist/reset.css'
 import './style.module.scss'
 
-import router from 'router'
+import { router } from 'router'
 
-const App = () => {
-  const [cookies] = useCookies()
-
-  const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql'
-  })
-
-  const authLink = setContext((_, { headers }) => {
-    const { token } = cookies
-
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : ''
-      }
-    }
-  })
-
-  const errorLink = onError(({ graphQLErrors, networkError }) => {
+export const apolloLinkError = () =>
+  onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
@@ -57,8 +40,25 @@ const App = () => {
     }
   })
 
+export const apolloAuthLink = (token: string) =>
+  setContext((_, { headers }) => ({
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  }))
+
+export const apolloHttpLink = () =>
+  createHttpLink({
+    uri: 'http://localhost:4000/graphql'
+  })
+
+const App = () => {
+  const [cookies] = useCookies()
+  const { token } = cookies
+
   const client = new ApolloClient({
-    link: from([errorLink, authLink, httpLink]),
+    link: from([apolloLinkError(), apolloAuthLink(token), apolloHttpLink()]),
     cache: new InMemoryCache(),
     credentials: 'include'
   })
@@ -66,7 +66,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <ConfigProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={router()} />
       </ConfigProvider>
     </ApolloProvider>
   )
