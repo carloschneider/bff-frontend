@@ -5,7 +5,7 @@ import {
   UsergroupAddOutlined,
   HomeOutlined
 } from '@ant-design/icons'
-import { type ItemType } from 'antd/es/menu/hooks/useItems'
+import { type ItemType } from 'antd/lib/menu/hooks/useItems'
 import { FaPaw } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 

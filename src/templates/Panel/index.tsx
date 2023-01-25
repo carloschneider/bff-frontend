@@ -1,5 +1,5 @@
 import { Layout, theme } from 'antd'
-import { Footer } from 'antd/es/layout/layout'
+import { Footer } from 'antd/lib/layout/layout'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
@@ -65,3 +65,15 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
 }
 
 export default TemplatePanel
+
+// type TemplatePanelProps = {
+//   Outlet: React.ReactNode
+// }
+
+// const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
+//   console.trace()
+
+//   return <h1>Title</h1>
+// }
+
+// export default TemplatePanel

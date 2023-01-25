@@ -1,7 +1,7 @@
 import { useLazyQuery } from '@apollo/client'
 import { Col, Pagination, Row, Space, Table, Typography } from 'antd'
-import { ColumnsType, TablePaginationConfig } from 'antd/es/table'
-import { FilterValue, SorterResult } from 'antd/es/table/interface'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import { FilterValue, SorterResult } from 'antd/lib/table/interface'
 import { useEffect, useState } from 'react'
 
 import CheckResponsible from 'components/CheckResponsible'

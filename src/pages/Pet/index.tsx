@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Descriptions, Skeleton, Table, Typography } from 'antd'
-import { ColumnsType } from 'antd/es/table'
+import { ColumnsType } from 'antd/lib/table'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
