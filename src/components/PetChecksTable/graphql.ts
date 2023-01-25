@@ -22,8 +22,8 @@ export type ResponsibleType = {
 
 export type CheckType = {
   id: string
-  arrive: Date
-  leave: Date
+  arrive: string
+  leave: string | null
   count?: number
   responsibles: ResponsibleType[]
 }
