@@ -11,7 +11,9 @@ const config: Config = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
   },
-  coveragePathIgnorePatterns: ['<rootDir>/node_modules/*', '\\.(module.scss)$']
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/*', '\\.(module.scss)$'],
+  resetMocks: true
 }
 
 export default config
