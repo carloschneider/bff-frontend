@@ -1,17 +1,19 @@
 import { MenuOutlined } from '@ant-design/icons'
 import { Layout, theme, Typography } from 'antd'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 import style from './style.module.scss'
 
 const { Title } = Typography
 
 type HeaderProps = {
-  setMenuCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void
+  // setMenuCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void
+  setMenuCollapsed: Dispatch<SetStateAction<boolean>>
 }
 
 const Header = ({ setMenuCollapsed }: HeaderProps) => {
   const { token } = theme.useToken()
+
   const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
