@@ -54,6 +54,5 @@ export const routes = () => (
   </Route>
 )
 
-const router = createBrowserRouter(createRoutesFromElements(routes()))
-
-export default router
+export const router = () =>
+  createBrowserRouter(createRoutesFromElements(routes()))
