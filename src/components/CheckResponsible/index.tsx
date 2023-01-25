@@ -29,7 +29,7 @@ const CheckResponsible = ({ date, record, type }: CheckRenderProps) => {
 
   return (
     <>
-      {date ? new Date(date).toLocaleString('pt-BR', dateOptions) : '-'}{' '}
+      {new Date(date).toLocaleString('pt-BR', dateOptions)}{' '}
       {date && `(${getResponsibleName()})`}
     </>
   )
