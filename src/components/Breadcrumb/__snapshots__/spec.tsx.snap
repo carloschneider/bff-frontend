@@ -2,7 +2,7 @@
 
 exports[`<Breadcrumb /> should render component 1`] = `
 <nav
-  class="ant-breadcrumb css-dev-only-do-not-override-9ntgx0"
+  class="ant-breadcrumb css-dev-only-do-not-override-1n7nwfa"
   style="margin-top: 12px; margin-bottom: 12px;"
 >
   <ol>

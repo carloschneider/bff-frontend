@@ -2,7 +2,7 @@
 
 exports[`<PageAuthByLink /> should render component 1`] = `
 <div
-  class="ant-card ant-card-bordered css-dev-only-do-not-override-9ntgx0"
+  class="ant-card ant-card-bordered css-dev-only-do-not-override-1n7nwfa"
 >
   <div
     class="ant-card-head"
@@ -22,7 +22,7 @@ exports[`<PageAuthByLink /> should render component 1`] = `
     style="text-align: center;"
   >
     <div
-      class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-vertical"
+      class="ant-space css-dev-only-do-not-override-1n7nwfa ant-space-vertical"
       style="display: flex;"
     >
       <div
@@ -32,7 +32,7 @@ exports[`<PageAuthByLink /> should render component 1`] = `
         <div
           aria-busy="true"
           aria-live="polite"
-          class="ant-spin ant-spin-spinning css-dev-only-do-not-override-9ntgx0"
+          class="ant-spin ant-spin-spinning css-dev-only-do-not-override-1n7nwfa"
         >
           <span
             aria-label="loading"
@@ -60,7 +60,7 @@ exports[`<PageAuthByLink /> should render component 1`] = `
         class="ant-space-item"
       >
         <div
-          class="ant-typography css-dev-only-do-not-override-9ntgx0"
+          class="ant-typography css-dev-only-do-not-override-1n7nwfa"
         >
           You'll be redirected in a few seconds
         </div>
