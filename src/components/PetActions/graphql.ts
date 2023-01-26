@@ -21,7 +21,7 @@ export const MUTATION_CHECKIN = gql`
 `
 
 export type CheckOutDataType = {
-  checkIn: CheckType[]
+  checkOut: CheckType[]
 }
 
 export const MUTATION_CHECKOUT = gql`

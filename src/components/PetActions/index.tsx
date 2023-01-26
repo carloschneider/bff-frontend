@@ -1,7 +1,10 @@
 import Icon from '@ant-design/icons'
 import { useMutation } from '@apollo/client'
-import { Button, Popconfirm, Space } from 'antd'
+import { App, Button, Popconfirm, Space } from 'antd'
+import { useEffect } from 'react'
 import { BsCalendar2Check, BsCalendar2X } from 'react-icons/bs'
+
+import { NOTIFICATION_OPTIONS } from 'constants/notifications'
 
 import {
   CheckInDataType,
@@ -17,41 +20,55 @@ type PetActionsProps = {
 }
 
 const PetActions = ({ id, name, callback }: PetActionsProps) => {
-  const [checkin] = useMutation<CheckInDataType, CheckVariablesType>(
-    MUTATION_CHECKIN
-  )
+  const { notification } = App.useApp()
+
+  const [checkin, { error: checkinError }] = useMutation<
+    CheckInDataType,
+    CheckVariablesType
+  >(MUTATION_CHECKIN)
 
   const handleCheckIn = async (id: string) => {
-    try {
-      await checkin({
-        variables: {
-          petId: id
-        }
-      })
+    await checkin({
+      variables: {
+        petId: id
+      }
+    })
 
-      await callback()
-    } catch (error) {
-      console.error(error)
-    }
+    await callback()
   }
 
-  const [checkout] = useMutation<CheckInDataType, CheckVariablesType>(
-    MUTATION_CHECKOUT
-  )
+  const [checkout, { error: checkoutError }] = useMutation<
+    CheckInDataType,
+    CheckVariablesType
+  >(MUTATION_CHECKOUT)
 
   const handleCheckOut = async (id: string) => {
-    try {
-      await checkout({
-        variables: {
-          petId: id
-        }
-      })
+    await checkout({
+      variables: {
+        petId: id
+      }
+    })
 
-      await callback()
-    } catch (error) {
-      console.error(error)
-    }
+    await callback()
   }
+
+  useEffect(() => {
+    if (checkinError) {
+      notification.error({
+        ...NOTIFICATION_OPTIONS,
+        message: 'Error',
+        description: checkinError.message
+      })
+    }
+
+    if (checkoutError) {
+      notification.error({
+        ...NOTIFICATION_OPTIONS,
+        message: 'Error',
+        description: checkoutError.message
+      })
+    }
+  }, [checkinError, checkoutError])
 
   return (
     <Space>
