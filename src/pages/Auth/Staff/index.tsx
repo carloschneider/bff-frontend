@@ -2,17 +2,19 @@ import { UserOutlined } from '@ant-design/icons'
 import { useMutation } from '@apollo/client'
 import {
   Alert,
+  App,
   Button,
   Card,
   Form,
   Input,
-  notification,
   Space,
   theme,
   Typography
 } from 'antd'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
+import { NOTIFICATION_OPTIONS } from 'constants/notifications'
 
 import {
   AuthDataType,
@@ -31,7 +33,7 @@ type FinishValuesType = {
 const PageLoginStaff = () => {
   const { token } = theme.useToken()
   const { company } = useParams() as AuthVariablesType
-  const [api, contextHolder] = notification.useNotification()
+  const { notification } = App.useApp()
 
   const [handleAuth, { data, loading, error }] = useMutation<
     AuthDataType,
@@ -53,17 +55,16 @@ const PageLoginStaff = () => {
 
   useEffect(() => {
     if (error) {
-      api.error({
+      notification.error({
+        ...NOTIFICATION_OPTIONS,
         message: 'Error',
-        description: error?.message,
-        placement: 'bottomRight'
+        description: error.message
       })
     }
   }, [error])
 
   return (
     <Space direction="vertical" size="middle">
-      {contextHolder}
       <Card
         className={style.card}
         cover={<img src="https://placedog.net/300?random" />}

@@ -2,17 +2,13 @@
 
 exports[`<PageLoginStaff /> should render component 1`] = `
 <div
-  class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-vertical"
+  class="ant-space css-dev-only-do-not-override-1n7nwfa ant-space-vertical"
 >
-  <div
-    class="ant-space-item"
-    style="margin-bottom: 16px;"
-  />
   <div
     class="ant-space-item"
   >
     <div
-      class="ant-card ant-card-bordered card css-dev-only-do-not-override-9ntgx0"
+      class="ant-card ant-card-bordered card css-dev-only-do-not-override-1n7nwfa"
     >
       <div
         class="ant-card-cover"
@@ -25,22 +21,22 @@ exports[`<PageLoginStaff /> should render component 1`] = `
         class="ant-card-body"
       >
         <h1
-          class="ant-typography css-dev-only-do-not-override-9ntgx0"
+          class="ant-typography css-dev-only-do-not-override-1n7nwfa"
           style="font-size: 20px;"
         >
           Login
         </h1>
         <form
-          class="ant-form ant-form-vertical css-dev-only-do-not-override-9ntgx0"
+          class="ant-form ant-form-vertical css-dev-only-do-not-override-1n7nwfa"
         >
           <div
-            class="ant-form-item css-dev-only-do-not-override-9ntgx0"
+            class="ant-form-item css-dev-only-do-not-override-1n7nwfa"
           >
             <div
-              class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
+              class="ant-row ant-form-item-row css-dev-only-do-not-override-1n7nwfa"
             >
               <div
-                class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
+                class="ant-col ant-form-item-control css-dev-only-do-not-override-1n7nwfa"
               >
                 <div
                   class="ant-form-item-control-input"
@@ -49,7 +45,7 @@ exports[`<PageLoginStaff /> should render component 1`] = `
                     class="ant-form-item-control-input-content"
                   >
                     <span
-                      class="ant-input-affix-wrapper css-dev-only-do-not-override-9ntgx0"
+                      class="ant-input-affix-wrapper css-dev-only-do-not-override-1n7nwfa"
                     >
                       <span
                         class="ant-input-prefix"
@@ -76,7 +72,7 @@ exports[`<PageLoginStaff /> should render component 1`] = `
                       </span>
                       <input
                         aria-required="true"
-                        class="ant-input css-dev-only-do-not-override-9ntgx0"
+                        class="ant-input css-dev-only-do-not-override-1n7nwfa"
                         id="email"
                         placeholder="E-mail"
                         type="email"
@@ -89,20 +85,20 @@ exports[`<PageLoginStaff /> should render component 1`] = `
             </div>
           </div>
           <div
-            class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-vertical"
+            class="ant-space css-dev-only-do-not-override-1n7nwfa ant-space-vertical"
             style="display: flex;"
           >
             <div
               class="ant-space-item"
             >
               <div
-                class="ant-form-item login-button css-dev-only-do-not-override-9ntgx0"
+                class="ant-form-item login-button css-dev-only-do-not-override-1n7nwfa"
               >
                 <div
-                  class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
+                  class="ant-row ant-form-item-row css-dev-only-do-not-override-1n7nwfa"
                 >
                   <div
-                    class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
+                    class="ant-col ant-form-item-control css-dev-only-do-not-override-1n7nwfa"
                   >
                     <div
                       class="ant-form-item-control-input"
@@ -111,7 +107,7 @@ exports[`<PageLoginStaff /> should render component 1`] = `
                         class="ant-form-item-control-input-content"
                       >
                         <button
-                          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-primary"
+                          class="ant-btn css-dev-only-do-not-override-1n7nwfa ant-btn-primary"
                           type="submit"
                         >
                           <span>

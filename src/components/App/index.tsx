@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
-import { ConfigProvider } from 'antd'
+import { App as AntdApp, ConfigProvider } from 'antd'
 import { useCookies } from 'react-cookie'
 import { RouterProvider } from 'react-router-dom'
 
@@ -64,11 +64,13 @@ const App = () => {
   })
 
   return (
-    <ApolloProvider client={client}>
-      <ConfigProvider>
-        <RouterProvider router={router()} />
-      </ConfigProvider>
-    </ApolloProvider>
+    <AntdApp>
+      <ApolloProvider client={client}>
+        <ConfigProvider>
+          <RouterProvider router={router()} />
+        </ConfigProvider>
+      </ApolloProvider>
+    </AntdApp>
   )
 }
 

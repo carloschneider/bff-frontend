@@ -1,5 +1,6 @@
 import { MockedResponse } from '@apollo/react-testing'
 import { act, fireEvent, screen } from '@testing-library/react'
+import { App } from 'antd'
 import { GraphQLError } from 'graphql'
 
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
@@ -156,7 +157,12 @@ describe('<PageLoginStaff />', () => {
       }
     ]
 
-    renderWithApollo(<PageLoginStaff />, apolloErrorResponseMock)
+    renderWithApollo(
+      <App>
+        <PageLoginStaff />
+      </App>,
+      apolloErrorResponseMock
+    )
 
     const inputEmail = await screen.getByPlaceholderText<HTMLInputElement>(
       'E-mail'
