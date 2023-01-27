@@ -1,14 +1,11 @@
 import { useLazyQuery } from '@apollo/client'
 import { Col, Pagination, Row, Space, Table, Typography } from 'antd'
-import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
-import { FilterValue, SorterResult } from 'antd/lib/table/interface'
+import { ColumnsType } from 'antd/lib/table'
 import { useEffect, useState } from 'react'
 
 import CheckResponsible from 'components/CheckResponsible'
 import PetActions from 'components/PetActions'
-import { convertOrder, OrderEnum } from 'helpers/pagination/order'
-import { PetType } from 'pages/Pet/graphql'
-import { PaginationType } from 'pages/Pets'
+import { OrderEnum } from 'helpers/pagination/order'
 
 import {
   ChecksDataType,
@@ -82,25 +79,6 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
     })
   }, [filters])
 
-  const handleChangeTable = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue | null>,
-    sorter: SorterResult<CheckType> | SorterResult<CheckType>[]
-  ) => {
-    const sorterParam = sorter as SorterResult<PetType>
-    const order = sorterParam.order as 'ascend' | 'descent'
-    const orderConverted = convertOrder(order)
-    const field = sorterParam.field as PaginationType['field']
-
-    setFilters((prevState) => {
-      return {
-        ...prevState,
-        order: orderConverted,
-        field
-      }
-    })
-  }
-
   const handleChangePagination = (pagination: number) => {
     setFilters((prevState) => {
       return {
@@ -110,6 +88,11 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
       }
     })
   }
+
+  const total =
+    dataChecks?.getAllChecksByPetId &&
+    dataChecks?.getAllChecksByPetId.length > 0 &&
+    dataChecks.getAllChecksByPetId[0].count
 
   return (
     <Space direction="vertical" size="middle" className={style.wrap}>
@@ -131,19 +114,13 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
         rowKey={(record) => record.id}
         pagination={false}
         loading={loadingChecks}
-        onChange={handleChangeTable}
         bordered
       />
 
       <Pagination
         current={filters.page}
         pageSize={filters.limit}
-        total={
-          dataChecks?.getAllChecksByPetId &&
-          dataChecks?.getAllChecksByPetId.length > 0
-            ? dataChecks.getAllChecksByPetId[0].count
-            : 1
-        }
+        total={total ? total : 1}
         showSizeChanger={false}
         onChange={handleChangePagination}
         style={{ display: 'flex', justifyContent: 'end' }}

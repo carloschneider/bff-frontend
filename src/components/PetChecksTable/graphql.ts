@@ -24,7 +24,7 @@ export type CheckType = {
   id: string
   arrive: string
   leave: string | null
-  count?: number
+  count?: number | null
   responsibles: ResponsibleType[]
 }
 
