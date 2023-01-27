@@ -65,15 +65,3 @@ const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
 }
 
 export default TemplatePanel
-
-// type TemplatePanelProps = {
-//   Outlet: React.ReactNode
-// }
-
-// const TemplatePanel = ({ Outlet }: TemplatePanelProps) => {
-//   console.trace()
-
-//   return <h1>Title</h1>
-// }
-
-// export default TemplatePanel

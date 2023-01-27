@@ -8,7 +8,7 @@ describe('<CheckResponsible />', () => {
   it('should render component', () => {
     const { container } = render(
       <CheckResponsible
-        date={new Date()}
+        date={new Date('2020-01-01T20:00:00.573Z')}
         type="arrive"
         record={checkResponsibleLeave}
       />
@@ -17,7 +17,7 @@ describe('<CheckResponsible />', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('should ', () => {
+  it('should render date and staff member name', () => {
     const date = new Date()
 
     render(
@@ -35,5 +35,19 @@ describe('<CheckResponsible />', () => {
     )
 
     expect(responsible).toBeInTheDocument()
+  })
+
+  it('should show hyphen when data is null', () => {
+    render(
+      <CheckResponsible
+        date={null}
+        type="leave"
+        record={checkResponsibleLeave}
+      />
+    )
+
+    const hyphen = screen.getByText('-')
+
+    expect(hyphen).toBeInTheDocument()
   })
 })

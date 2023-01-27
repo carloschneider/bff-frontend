@@ -1,7 +1,7 @@
 import { CheckType } from 'components/PetChecksTable/graphql'
 
 type CheckRenderProps = {
-  date: Date
+  date: Date | null
   record: CheckType
   type: 'arrive' | 'leave'
 }
@@ -29,7 +29,7 @@ const CheckResponsible = ({ date, record, type }: CheckRenderProps) => {
 
   return (
     <>
-      {new Date(date).toLocaleString('pt-BR', dateOptions)}{' '}
+      {date ? new Date(date).toLocaleString('pt-BR', dateOptions) : '-'}{' '}
       {date && `(${getResponsibleName()})`}
     </>
   )
