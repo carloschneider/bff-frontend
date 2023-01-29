@@ -8,9 +8,11 @@ export type MatchesType = {
   handle: unknown
 }
 
+export type LocationType = Location
+
 export const selectedKey = (
   matches: MatchesType[],
-  location: Location
+  location: LocationType
 ): string => {
   const lastMatch = matches.at(-1)
 
