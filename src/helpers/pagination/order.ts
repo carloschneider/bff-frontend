@@ -3,7 +3,7 @@ export enum OrderEnum {
   ASC = 'ASC'
 }
 
-export const convertOrder = (order: string): OrderEnum => {
+export const convertOrder = (order: 'ascend' | 'descent'): OrderEnum => {
   const desc = OrderEnum.DESC
   const asc = OrderEnum.ASC
 
