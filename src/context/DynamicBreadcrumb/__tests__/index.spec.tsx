@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { useEffect } from 'react'
 
-import DynamicBreadcrumbProvider, { useDynamicBreadcrumbContext } from '.'
+import DynamicBreadcrumbProvider, { useDynamicBreadcrumbContext } from '..'
 
 describe('<DynamicBreadcrumb />', () => {
   const MockedComponent = () => {

@@ -4,10 +4,12 @@ import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import { OrderEnum } from 'helpers/pagination/order'
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
-import { getAllChecksByPetId, getAllChecksByPetIdPageTwo } from './__fixtures__'
-import { ChecksDataType, GET_CHECKS_BY_PET_ID } from './graphql'
-
-import PetChecksTable from '.'
+import PetChecksTable from '..'
+import {
+  getAllChecksByPetId,
+  getAllChecksByPetIdPageTwo
+} from '../__fixtures__'
+import { ChecksDataType, GET_CHECKS_BY_PET_ID } from '../graphql'
 
 describe('<PetChecksTable />', () => {
   const mockedPetId = '1'

@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
 
-import Header from '.'
+import Header from '../'
 
 describe('<Header />', () => {
   it('should render component', () => {

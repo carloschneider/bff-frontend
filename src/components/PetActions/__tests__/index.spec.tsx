@@ -5,14 +5,13 @@ import { GraphQLError } from 'graphql'
 
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
+import PetActions from '../'
 import {
   MUTATION_CHECKIN,
   CheckInDataType,
   MUTATION_CHECKOUT,
   CheckOutDataType
-} from './graphql'
-
-import PetActions from '.'
+} from '../graphql'
 
 describe('<PetActions />', () => {
   const mockedId = '1'

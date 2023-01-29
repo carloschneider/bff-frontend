@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { renderWithRouter } from 'test-utils/render/renderWithRouter'
 
-import Sidebar from '.'
+import Sidebar from '..'
 
 jest.mock('antd', () => ({
   ...jest.requireActual('antd'),

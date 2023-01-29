@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react'
 
-import { checkResponsibleLeave } from './__fixtures__'
-
-import CheckResponsible from '.'
+import CheckResponsible from '../'
+import { checkResponsibleLeave } from '../__fixtures__'
 
 describe('<CheckResponsible />', () => {
   it('should render component', () => {

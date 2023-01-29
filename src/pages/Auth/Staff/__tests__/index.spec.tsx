@@ -5,9 +5,8 @@ import { GraphQLError } from 'graphql'
 
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
-import { MUTATION_AUTH } from './graphql'
-
-import PageLoginStaff from '.'
+import PageLoginStaff from '..'
+import { MUTATION_AUTH } from '../graphql'
 
 const mockedCompany = 'fake-company'
 const mockedEmail = 'test@email.com'

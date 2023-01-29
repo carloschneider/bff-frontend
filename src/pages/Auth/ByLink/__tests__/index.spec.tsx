@@ -6,9 +6,8 @@ import MockDate from 'mockdate'
 import { COOKIE_EXPIRES } from 'constants/cookie'
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
-import { MUTATION_AUTH_BY_KEY } from './graphql'
-
-import PageAuthByLink from '.'
+import PageAuthByLink from '..'
+import { MUTATION_AUTH_BY_KEY } from '../graphql'
 
 const mockedUseNavigate = jest.fn()
 const mockedKey = 'fake-key'
