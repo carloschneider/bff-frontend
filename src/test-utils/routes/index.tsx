@@ -6,9 +6,8 @@ import {
   Route
 } from 'react-router-dom'
 
+import Breadcrumb from 'components/Breadcrumb'
 import DynamicBreadcrumbProvider from 'context/DynamicBreadcrumb'
-
-import Breadcrumb from '../index'
 
 type MockedTemplateProps = {
   Outlet: React.ReactNode

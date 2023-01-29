@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { RouterProvider } from 'react-router-dom'
 
-import { mockedRouter, mockedRoutes } from './__mocks__'
+import { mockedRouter, mockedRoutes } from 'test-utils/routes'
 
 jest.mock('router', () => ({
   routes: jest.fn().mockImplementation(() => mockedRoutes)
