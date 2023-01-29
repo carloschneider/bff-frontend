@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> should render component 1`] = `
+<body>
+  <div />
+  <div>
+    <div
+      class="ant-drawer ant-drawer-left css-dev-only-do-not-override-1n7nwfa ant-drawer-open"
+      tabindex="-1"
+    >
+      <div
+        class="ant-drawer-mask"
+      />
+      <div
+        aria-hidden="true"
+        data-sentinel="start"
+        style="width: 0px; height: 0px; overflow: hidden; outline: none; position: absolute;"
+        tabindex="0"
+      />
+      <div
+        class="ant-drawer-content-wrapper"
+        style="width: 200px;"
+      >
+        <div
+          aria-modal="true"
+          class="ant-drawer-content"
+          role="dialog"
+        >
+          <div
+            class="ant-drawer-wrapper-body"
+          >
+            <div
+              class="ant-drawer-body"
+              style="height: 100vh; padding: 0px; display: flex; flex-direction: row;"
+            >
+              <ul
+                class="ant-menu ant-menu-root ant-menu-inline ant-menu-light css-dev-only-do-not-override-1n7nwfa"
+                data-menu-list="true"
+                role="menu"
+                style="height: 100%;"
+                tabindex="0"
+              >
+                <li
+                  class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-test-/admin"
+                  role="STAFF,TUTOR"
+                  style="padding-left: 24px;"
+                  tabindex="-1"
+                >
+                  <span
+                    aria-label="home"
+                    class="anticon anticon-home ant-menu-item-icon"
+                    role="img"
+                    style="font-size: 18px;"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="home"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0018.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
+                    <a
+                      href="/admin"
+                    >
+                      Home
+                    </a>
+                  </span>
+                </li>
+                <li
+                  class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-test-/admin/pets"
+                  role="USER,STAFF,TUTOR"
+                  style="padding-left: 24px;"
+                  tabindex="-1"
+                >
+                  <svg
+                    class="ant-menu-item-icon"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    style="font-size: 18px;"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.42 3.64 85.22 34.58 93.36z"
+                    />
+                  </svg>
+                  <span
+                    class="ant-menu-title-content"
+                  >
+                    <a
+                      href="/admin/pets"
+                    >
+                      Pets
+                    </a>
+                  </span>
+                </li>
+                <li
+                  class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-test-/admin/logout"
+                  role="USER,STAFF,TUTOR"
+                  style="padding-left: 24px;"
+                  tabindex="-1"
+                >
+                  <span
+                    aria-label="logout"
+                    class="anticon anticon-logout ant-menu-item-icon"
+                    role="img"
+                    style="font-size: 18px;"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="logout"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
+                    <a
+                      href="/admin/logout"
+                    >
+                      Logout
+                    </a>
+                  </span>
+                </li>
+              </ul>
+              <div
+                aria-hidden="true"
+                style="display: none;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        data-sentinel="end"
+        style="width: 0px; height: 0px; overflow: hidden; outline: none; position: absolute;"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</body>
+`;
