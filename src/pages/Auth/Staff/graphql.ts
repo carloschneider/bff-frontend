@@ -10,7 +10,7 @@ export type AuthDataType = {
 
 export type AuthVariablesType = {
   email: string
-  company: string
+  company?: string
 }
 
 export type AuthVariablesInputType = {

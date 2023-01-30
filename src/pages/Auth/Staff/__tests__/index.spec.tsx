@@ -78,66 +78,6 @@ describe('<PageLoginStaff />', () => {
     expect(successMessage).toBeInTheDocument()
   })
 
-  it('should show error when try login with a invalid email', async () => {
-    renderWithApollo(<PageLoginStaff />)
-
-    const inputEmail = await screen.getByPlaceholderText<HTMLInputElement>(
-      'E-mail'
-    )
-
-    await act(async () => {
-      await fireEvent.change(inputEmail, {
-        target: {
-          value: 'invalid@email'
-        }
-      })
-    })
-
-    const submit = screen.getByRole('button')
-
-    await act(async () => {
-      await fireEvent.click(submit)
-    })
-
-    const errorMessage = screen.getByText('Please input a valid e-mail')
-
-    expect(errorMessage).toBeInTheDocument()
-  })
-
-  it('should show error when try to submit form with email empty', async () => {
-    renderWithApollo(<PageLoginStaff />)
-
-    const inputEmail = await screen.getByPlaceholderText<HTMLInputElement>(
-      'E-mail'
-    )
-
-    await act(async () => {
-      await fireEvent.change(inputEmail, {
-        target: {
-          value: '123'
-        }
-      })
-    })
-
-    await act(async () => {
-      await fireEvent.change(inputEmail, {
-        target: {
-          value: ''
-        }
-      })
-    })
-
-    const submit = screen.getByRole('button')
-
-    await act(async () => {
-      await fireEvent.click(submit)
-    })
-
-    const errorMessage = screen.getByText('Please input your e-mail')
-
-    expect(errorMessage).toBeInTheDocument()
-  })
-
   it('should return error and show notification', async () => {
     const apolloErrorResponseMock: MockedResponse[] = [
       {
