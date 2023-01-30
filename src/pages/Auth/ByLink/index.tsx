@@ -51,9 +51,7 @@ const PageAuthByLink = () => {
       setCookie('token', token, cookieOptions)
       setCookie('role', role, cookieOptions)
 
-      setTimeout(() => {
-        navigate('/admin')
-      }, 800)
+      navigate('/admin')
     }
   }, [authData])
 
