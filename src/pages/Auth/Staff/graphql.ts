@@ -1,23 +1,23 @@
 import { gql } from '@apollo/client'
 
-export type AuthType = {
+export type AuthStaffType = {
   id: string
 }
 
-export type AuthDataType = {
-  authStaff: AuthType
+export type AuthStaffDataType = {
+  authStaff: AuthStaffType
 }
 
-export type AuthVariablesType = {
+export type AuthStaffVariablesType = {
   email: string
   company?: string
 }
 
-export type AuthVariablesInputType = {
-  input: AuthVariablesType
+export type AuthStaffVariablesInputType = {
+  input: AuthStaffVariablesType
 }
 
-export const MUTATION_AUTH = gql`
+export const MUTATION_AUTH_STAFF = gql`
   mutation AuthStaff($input: EmailAuthInput!) {
     authStaff(input: $input) {
       id

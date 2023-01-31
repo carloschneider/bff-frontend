@@ -6,7 +6,7 @@ import { GraphQLError } from 'graphql'
 import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
 import PageLoginStaff from '..'
-import { MUTATION_AUTH } from '../graphql'
+import { MUTATION_AUTH_STAFF } from '../graphql'
 
 const mockedCompany = 'fake-company'
 const mockedEmail = 'test@email.com'
@@ -29,7 +29,7 @@ describe('<PageLoginStaff />', () => {
     const apolloResponseMock: MockedResponse[] = [
       {
         request: {
-          query: MUTATION_AUTH,
+          query: MUTATION_AUTH_STAFF,
           variables: {
             input: {
               email: mockedEmail,
@@ -82,7 +82,7 @@ describe('<PageLoginStaff />', () => {
     const apolloErrorResponseMock: MockedResponse[] = [
       {
         request: {
-          query: MUTATION_AUTH,
+          query: MUTATION_AUTH_STAFF,
           variables: {
             input: {
               email: mockedEmail,

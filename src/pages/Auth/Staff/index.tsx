@@ -7,10 +7,10 @@ import AuthBase from 'components/AuthBase'
 import { NOTIFICATION_OPTIONS } from 'constants/notifications'
 
 import {
-  AuthDataType,
-  AuthVariablesInputType,
-  AuthVariablesType,
-  MUTATION_AUTH
+  AuthStaffDataType,
+  AuthStaffVariablesInputType,
+  AuthStaffVariablesType,
+  MUTATION_AUTH_STAFF
 } from './graphql'
 
 type FinishValuesType = {
@@ -18,13 +18,13 @@ type FinishValuesType = {
 }
 
 const PageLoginStaff = () => {
-  const { company } = useParams<AuthVariablesType>()
+  const { company } = useParams<AuthStaffVariablesType>()
   const { notification } = App.useApp()
 
   const [handleAuth, { data, loading, error }] = useMutation<
-    AuthDataType,
-    AuthVariablesInputType
-  >(MUTATION_AUTH)
+    AuthStaffDataType,
+    AuthStaffVariablesInputType
+  >(MUTATION_AUTH_STAFF)
 
   const handleFinish = (values: FinishValuesType) => {
     const { email } = values
@@ -49,7 +49,13 @@ const PageLoginStaff = () => {
     }
   }, [error])
 
-  return <AuthBase onFinish={handleFinish} data={data} loading={loading} />
+  return (
+    <AuthBase<AuthStaffDataType>
+      onFinish={handleFinish}
+      data={data}
+      loading={loading}
+    />
+  )
 }
 
 export default PageLoginStaff

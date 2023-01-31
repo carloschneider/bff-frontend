@@ -8,6 +8,7 @@ import { Route } from 'use-react-router-breadcrumbs'
 
 import { useDynamicBreadcrumbContext } from 'context/DynamicBreadcrumb'
 import PageAuthByLink from 'pages/Auth/ByLink'
+import PageLogin from 'pages/Auth/Login'
 import PageLoginStaff from 'pages/Auth/Staff'
 import PageDashboard from 'pages/Dashboard'
 import PageHome from 'pages/Home'
@@ -48,7 +49,11 @@ export const routes = () => (
     </Route>
 
     <Route path="/auth" element={<TemplateLogin Outlet={<Outlet />} />}>
+      {/* Tutor */}
+      <Route path="/auth/:company" element={<PageLogin />} />
+      {/* Staff */}
       <Route path="/auth/:company/staff" element={<PageLoginStaff />} />
+      {/* Key */}
       <Route path="/auth/key/:key" element={<PageAuthByLink />} />
     </Route>
   </Route>

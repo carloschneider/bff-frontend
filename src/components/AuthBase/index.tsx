@@ -10,8 +10,6 @@ import {
   Typography
 } from 'antd'
 
-import { AuthDataType } from 'pages/Auth/Staff/graphql'
-
 import style from './style.module.scss'
 
 const { Title } = Typography
@@ -20,13 +18,17 @@ type FinishValuesType = {
   email: string
 }
 
-export type AuthBaseProps = {
+export type AuthBaseProps<DataType> = {
   onFinish: (values: FinishValuesType) => void
   loading: boolean
-  data?: AuthDataType | null
+  data?: DataType | null
 }
 
-const AuthBase = ({ onFinish, loading, data }: AuthBaseProps) => {
+const AuthBase = <DataType,>({
+  onFinish,
+  loading,
+  data
+}: AuthBaseProps<DataType>) => {
   const { token } = theme.useToken()
 
   return (

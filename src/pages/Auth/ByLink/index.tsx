@@ -43,23 +43,23 @@ const PageAuthByLink = () => {
     if (authData?.authByKey) {
       const { token, role } = authData.authByKey
 
-      const cookieOptions: CookieSetOptions = {
-        expires: new Date(new Date().getTime() + COOKIE_EXPIRES * 1000),
-        path: '/'
+      if (token && role) {
+        const cookieOptions: CookieSetOptions = {
+          expires: new Date(new Date().getTime() + COOKIE_EXPIRES * 1000),
+          path: '/'
+        }
+
+        setCookie('token', token, cookieOptions)
+        setCookie('role', role, cookieOptions)
+
+        navigate('/admin')
       }
-
-      setCookie('token', token, cookieOptions)
-      setCookie('role', role, cookieOptions)
-
-      navigate('/admin')
     }
-  }, [authData])
 
-  useEffect(() => {
     if (authError) {
       setError('Something went wrong, please try again.')
     }
-  }, [authError])
+  }, [authData, authError])
 
   return (
     <>
