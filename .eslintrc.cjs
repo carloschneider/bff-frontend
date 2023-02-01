@@ -6,10 +6,10 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'plugin:import/errors'
+    'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:prettier/recommended'
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', 'prettier', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   settings: {
     'import/resolver': {
       typescript: {
@@ -26,7 +26,14 @@ module.exports = {
     }
   },
   rules: {
-    indent: ['error', 2, { SwitchCase: 1 }],
+    indent: [
+      'error',
+      2,
+      {
+        SwitchCase: 1,
+        ignoredNodes: ['JSXElement', 'JSXElement *', 'ConditionalExpression']
+      }
+    ],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
