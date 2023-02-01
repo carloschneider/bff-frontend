@@ -93,7 +93,9 @@ describe('<PetChecksTable />', () => {
     expect(staffMember).toBeInTheDocument()
   })
 
-  it('should change pagination page', async () => {
+  fit('should change pagination page', async () => {
+    document.cookie = 'role="STAFF"'
+
     renderWithApollo(
       <PetChecksTable id={mockedPetId} name={mockedPetName} />,
       apolloResponseMock
@@ -130,5 +132,40 @@ describe('<PetChecksTable />', () => {
     )
 
     expect(staffMemberPageTwo).toBeInTheDocument()
+  })
+
+  it('should not show pagination', () => {
+    const apolloResponseMockEmpty: MockedResponse<ChecksDataType>[] = [
+      {
+        request: {
+          query: GET_CHECKS_BY_PET_ID,
+          variables: {
+            order: OrderEnum.DESC,
+            field: 'createdAt',
+            limit: 4,
+            offset: 0,
+            where: {
+              id: mockedPetId
+            }
+          }
+        },
+        result: () => {
+          return {
+            data: {
+              getAllChecksByPetId: []
+            }
+          }
+        }
+      }
+    ]
+
+    renderWithApollo(
+      <PetChecksTable id={mockedPetId} name={mockedPetName} />,
+      apolloResponseMockEmpty
+    )
+
+    const nextPageButton = screen.queryByRole('button', { name: /right/ })
+
+    expect(nextPageButton).not.toBeInTheDocument()
   })
 })

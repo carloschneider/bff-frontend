@@ -2,6 +2,7 @@ import { useLazyQuery } from '@apollo/client'
 import { Col, Pagination, Row, Space, Table, Typography } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 import CheckResponsible from 'components/CheckResponsible'
 import PetActions from 'components/PetActions'
@@ -42,6 +43,10 @@ const columnsChecks: ColumnsType<CheckType> = [
 ]
 
 const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
+  const [cookies] = useCookies()
+
+  const { role } = cookies
+
   const [
     getChecks,
     { data: dataChecks, loading: loadingChecks, refetch: refetchChecks }
@@ -103,9 +108,11 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
           </Title>
         </Col>
 
-        <Col xs={24} sm={12} className={style.buttons}>
-          <PetActions id={id} name={name} callback={refetchChecks} />
-        </Col>
+        {role !== 'TUTOR' && (
+          <Col xs={24} sm={12} className={style.buttons}>
+            <PetActions id={id} name={name} callback={refetchChecks} />
+          </Col>
+        )}
       </Row>
 
       <Table
@@ -117,14 +124,16 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
         bordered
       />
 
-      <Pagination
-        current={filters.page}
-        pageSize={filters.limit}
-        total={total ? total : 1}
-        showSizeChanger={false}
-        onChange={handleChangePagination}
-        style={{ display: 'flex', justifyContent: 'end' }}
-      />
+      {total && total > filters.limit && (
+        <Pagination
+          current={filters.page}
+          pageSize={filters.limit}
+          total={total}
+          showSizeChanger={false}
+          onChange={handleChangePagination}
+          style={{ display: 'flex', justifyContent: 'end' }}
+        />
+      )}
     </Space>
   )
 }
