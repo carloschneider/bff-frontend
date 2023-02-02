@@ -18,7 +18,7 @@ export type PetType = {
   name: string
   birthDate: Date
   breed: BreedType
-  count?: number
+  count?: number | null
   tutors: TutorType[]
   createdAt?: Date
 }
