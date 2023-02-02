@@ -6,8 +6,8 @@ import { renderWithApollo } from 'test-utils/render/renderWithApollo'
 
 import PetChecksTable from '..'
 import {
-  getAllChecksByPetId,
-  getAllChecksByPetIdPageTwo
+  getAllChecksByPetIdFixture,
+  getAllChecksByPetIdPageTwoFixture
 } from '../__fixtures__'
 import { ChecksDataType, GET_CHECKS_BY_PET_ID } from '../graphql'
 
@@ -31,7 +31,7 @@ describe('<PetChecksTable />', () => {
       result: () => {
         return {
           data: {
-            getAllChecksByPetId
+            getAllChecksByPetId: getAllChecksByPetIdFixture
           }
         }
       }
@@ -52,7 +52,7 @@ describe('<PetChecksTable />', () => {
       result: () => {
         return {
           data: {
-            getAllChecksByPetId: getAllChecksByPetIdPageTwo
+            getAllChecksByPetId: getAllChecksByPetIdPageTwoFixture
           }
         }
       }
@@ -81,10 +81,10 @@ describe('<PetChecksTable />', () => {
     })
 
     const mockedCheckinDate = new Date(
-      getAllChecksByPetId[0].arrive
+      getAllChecksByPetIdFixture[0].arrive
     ).toLocaleString('pt-BR', { hourCycle: 'h23' })
 
-    const mockedCheckinMemberName = `${getAllChecksByPetId[0].responsibles[0].staff?.firstName} ${getAllChecksByPetId[0].responsibles[0].staff?.lastName}`
+    const mockedCheckinMemberName = `${getAllChecksByPetIdFixture[0].responsibles[0].staff?.firstName} ${getAllChecksByPetIdFixture[0].responsibles[0].staff?.lastName}`
 
     const staffMember = await screen.findByText(
       `${mockedCheckinDate} (${mockedCheckinMemberName})`
@@ -102,10 +102,10 @@ describe('<PetChecksTable />', () => {
     )
 
     const mockedCheckinDate = new Date(
-      getAllChecksByPetId[0].arrive
+      getAllChecksByPetIdFixture[0].arrive
     ).toLocaleString('pt-BR', { hourCycle: 'h23' })
 
-    const mockedCheckinMemberName = `${getAllChecksByPetId[0].responsibles[0].staff?.firstName} ${getAllChecksByPetId[0].responsibles[0].staff?.lastName}`
+    const mockedCheckinMemberName = `${getAllChecksByPetIdFixture[0].responsibles[0].staff?.firstName} ${getAllChecksByPetIdFixture[0].responsibles[0].staff?.lastName}`
 
     const staffMember = await screen.findByText(
       `${mockedCheckinDate} (${mockedCheckinMemberName})`
@@ -122,10 +122,10 @@ describe('<PetChecksTable />', () => {
     })
 
     const mockedCheckinDatePageTwo = new Date(
-      getAllChecksByPetIdPageTwo[0].arrive
+      getAllChecksByPetIdPageTwoFixture[0].arrive
     ).toLocaleString('pt-BR', { hourCycle: 'h23' })
 
-    const mockedCheckinMemberNamePageTwo = `${getAllChecksByPetIdPageTwo[0].responsibles[0].staff?.firstName} ${getAllChecksByPetIdPageTwo[0].responsibles[0].staff?.lastName}`
+    const mockedCheckinMemberNamePageTwo = `${getAllChecksByPetIdPageTwoFixture[0].responsibles[0].staff?.firstName} ${getAllChecksByPetIdPageTwoFixture[0].responsibles[0].staff?.lastName}`
 
     const staffMemberPageTwo = await screen.findByText(
       `${mockedCheckinDatePageTwo} (${mockedCheckinMemberNamePageTwo})`

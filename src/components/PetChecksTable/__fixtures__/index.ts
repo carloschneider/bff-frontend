@@ -1,6 +1,6 @@
 import { CheckType } from '../graphql'
 
-export const getAllChecksByPetId: CheckType[] = [
+export const getAllChecksByPetIdFixture: CheckType[] = [
   {
     id: 'a6a3300f-fcf8-40cc-89f2-1fa85d4c4ba2',
     arrive: '2023-01-25T18:26:43.000Z',
@@ -115,7 +115,7 @@ export const getAllChecksByPetId: CheckType[] = [
   }
 ]
 
-export const getAllChecksByPetIdPageTwo: CheckType[] = [
+export const getAllChecksByPetIdPageTwoFixture: CheckType[] = [
   {
     id: 'ade1d25c-0802-4aca-8524-0f493a609dc2',
     arrive: '2023-01-07T17:29:39.000Z',
