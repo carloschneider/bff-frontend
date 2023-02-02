@@ -28,7 +28,7 @@ export type PetDataType = {
 }
 
 export type PetVariablesType = {
-  petId: string
+  petId?: string
 }
 
 export const GET_PET_BY_ID = gql`
