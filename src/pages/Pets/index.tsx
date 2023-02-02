@@ -1,36 +1,34 @@
 import { SearchOutlined } from '@ant-design/icons'
-import { gql, useLazyQuery } from '@apollo/client'
-import { Input, Pagination, Space, Table, Typography } from 'antd'
+import { useLazyQuery } from '@apollo/client'
+import { App, Input, Pagination, Space, Table, Typography } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import type { SorterResult } from 'antd/lib/table/interface'
 import { debounce } from 'lodash'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { convertOrder, OrderEnum } from 'helpers/pagination/order'
+import { NOTIFICATION_OPTIONS } from 'constants/notifications'
+import {
+  PAGINATION_DEFAULT_FIELD,
+  PAGINATION_DEFAULT_LIMIT,
+  PAGINATION_DEFAULT_OFFSET,
+  PAGINATION_DEFAULT_ORDER,
+  PAGINATION_DEFAULT_PAGE
+} from 'constants/pagination'
+import { convertOrder } from 'helpers/pagination/order'
 import { PetType } from 'pages/Pet/graphql'
 
-export type PetsDataType = {
-  getAllPets: PetType[]
-}
-
-export type PaginationType = {
-  order?: OrderEnum
-  field?: keyof PetType
-  limit: number
-  offset: number
-}
-
-type PetsWhereType = {
-  name?: string
-}
-
-export type PetsVariablesType = {
-  where?: PetsWhereType | null
-} & PaginationType
+import {
+  PaginationType,
+  PetsDataType,
+  PetsVariablesType,
+  QUERY_GET_ALL_PETS
+} from './graphql'
 
 const PagePets = () => {
-  const columns: ColumnsType<PetType> = [
+  const { notification } = App.useApp()
+
+  const columns: ColumnsType<Omit<PetType, 'tutors'>> = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -65,42 +63,14 @@ const PagePets = () => {
     }
   ]
 
-  const QUERY_GET_ALL_PETS = gql`
-    query GetAllPets(
-      $limit: Int
-      $offset: Int
-      $field: String
-      $order: String
-      $where: PetWhereInput
-    ) {
-      getAllPets(
-        limit: $limit
-        offset: $offset
-        field: $field
-        order: $order
-        where: $where
-      ) {
-        id
-        name
-        birthDate
-        createdAt
-        breed {
-          name
-        }
-        count
-      }
-    }
-  `
-
-  const defaultOrder = OrderEnum.DESC
-  const defaultField = 'createdAt'
-
-  const [page, setPage] = useState<number>(1)
-  const [order, setOrder] = useState<PaginationType['order']>(defaultOrder)
-  const [field, setField] = useState<PaginationType['field']>(defaultField)
-  const [limit] = useState<PaginationType['limit']>(10)
-  const [offset, setOffset] = useState<PaginationType['offset']>(0)
-  const [where, setWhere] = useState<PetsVariablesType['where']>(null)
+  const [filters, setFilters] = useState<PetsVariablesType & { page: number }>({
+    page: PAGINATION_DEFAULT_PAGE,
+    order: PAGINATION_DEFAULT_ORDER,
+    field: PAGINATION_DEFAULT_FIELD,
+    limit: PAGINATION_DEFAULT_LIMIT,
+    offset: PAGINATION_DEFAULT_OFFSET,
+    where: null
+  })
 
   const [getPets, { loading, data, error }] = useLazyQuery<
     PetsDataType,
@@ -113,13 +83,23 @@ const PagePets = () => {
     } = event
 
     if (!value) {
-      setWhere(null)
+      setFilters((prevState) => {
+        return {
+          ...prevState,
+          where: null
+        }
+      })
 
       return true
     }
 
-    setWhere({
-      name: value
+    setFilters((prevState) => {
+      return {
+        ...prevState,
+        where: {
+          name: value
+        }
+      }
     })
   }
 
@@ -133,35 +113,60 @@ const PagePets = () => {
     _: any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     __: any,
-    sorter: SorterResult<PetType> | SorterResult<PetType>[]
+    sorter:
+      | SorterResult<Omit<PetType, 'tutors'>>
+      | SorterResult<Omit<PetType, 'tutors'>>[]
   ) => {
     const sorterParam = sorter as SorterResult<PetType>
     const order = sorterParam.order as 'ascend' | 'descent'
     const orderConverted = convertOrder(order)
     const field = sorterParam.field as PaginationType['field']
 
-    setOrder(orderConverted)
-    setField(field as PaginationType['field'])
+    setFilters((prevState) => {
+      return {
+        ...prevState,
+        order: orderConverted,
+        field: field
+      }
+    })
   }
 
   const handleChangePagination = (pagination: number) => {
-    setPage(pagination)
-    setOffset((pagination - 1) * limit)
+    setFilters((prevState) => {
+      return {
+        ...prevState,
+        page: pagination,
+        offset: (pagination - 1) * prevState.limit
+      }
+    })
   }
 
   useEffect(() => {
     getPets({
       variables: {
-        order,
-        field,
-        limit,
-        offset,
-        where
+        order: filters.order,
+        field: filters.field,
+        limit: filters.limit,
+        offset: filters.offset,
+        where: filters.where
       },
       fetchPolicy: 'network-only',
       nextFetchPolicy: 'no-cache'
     })
-  }, [order, field, limit, offset, where])
+  }, [filters])
+
+  useEffect(() => {
+    if (error) {
+      notification.error({
+        ...NOTIFICATION_OPTIONS,
+        message: 'Error',
+        description: error.message
+      })
+    }
+  }, [error])
+
+  const total =
+    data?.getAllPets && data?.getAllPets.length > 0 && data?.getAllPets[0].count
 
   return (
     <>
@@ -186,18 +191,16 @@ const PagePets = () => {
           scroll={{ x: 800 }}
         />
 
-        <Pagination
-          current={page}
-          pageSize={limit}
-          total={
-            data?.getAllPets && data?.getAllPets.length > 0
-              ? data?.getAllPets[0].count
-              : 1
-          }
-          showSizeChanger={false}
-          onChange={handleChangePagination}
-          style={{ display: 'flex', justifyContent: 'end' }}
-        />
+        {total && total > filters.limit && (
+          <Pagination
+            current={filters.page}
+            pageSize={filters.limit}
+            total={total}
+            showSizeChanger={false}
+            onChange={handleChangePagination}
+            style={{ display: 'flex', justifyContent: 'end' }}
+          />
+        )}
       </Space>
     </>
   )
