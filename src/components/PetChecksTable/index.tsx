@@ -6,7 +6,12 @@ import { useCookies } from 'react-cookie'
 
 import CheckResponsible from 'components/CheckResponsible'
 import PetActions from 'components/PetActions'
-import { OrderEnum } from 'helpers/pagination/order'
+import {
+  PAGINATION_DEFAULT_FIELD,
+  PAGINATION_DEFAULT_OFFSET,
+  PAGINATION_DEFAULT_ORDER,
+  PAGINATION_DEFAULT_PAGE
+} from 'constants/pagination'
 
 import {
   ChecksDataType,
@@ -52,17 +57,14 @@ const PetChecksTable = ({ id, name }: PetChecksTypeProps) => {
     { data: dataChecks, loading: loadingChecks, refetch: refetchChecks }
   ] = useLazyQuery<ChecksDataType, ChecksVariablesType>(GET_CHECKS_BY_PET_ID)
 
-  const defaultOrder = OrderEnum.DESC
-  const defaultField = 'createdAt'
-
   const [filters, setFilters] = useState<
     ChecksVariablesType & { page: number }
   >({
-    page: 1,
-    order: defaultOrder,
-    field: defaultField,
+    page: PAGINATION_DEFAULT_PAGE,
+    order: PAGINATION_DEFAULT_ORDER,
+    field: PAGINATION_DEFAULT_FIELD,
     limit: 4,
-    offset: 0,
+    offset: PAGINATION_DEFAULT_OFFSET,
     where: {
       id
     }

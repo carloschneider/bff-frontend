@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-import { PaginationType } from 'pages/Pets'
+import { PaginationType } from 'pages/Pets/graphql'
 
 export type StaffType = {
   id: string

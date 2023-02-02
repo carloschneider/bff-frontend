@@ -93,7 +93,7 @@ describe('<PetChecksTable />', () => {
     expect(staffMember).toBeInTheDocument()
   })
 
-  fit('should change pagination page', async () => {
+  it('should change pagination page', async () => {
     document.cookie = 'role="STAFF"'
 
     renderWithApollo(
