@@ -31,7 +31,7 @@ export const checkResponsibleLeave: CheckType = {
       staff: null,
       user: {
         id: 'db8653e6-7ffe-4edf-aa36-8f26c11e8576',
-        companyName: 'Walky Reabilitação'
+        companyName: 'Fake Company'
       }
     },
     {
